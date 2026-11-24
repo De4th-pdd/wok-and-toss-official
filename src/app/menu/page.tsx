@@ -1,16 +1,38 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { MENU_ITEMS, CATEGORIES } from '@/data/menu';
 import DishCard from '@/components/DishCard';
-import { Search, MessageCircle, Filter, ArrowLeft, Info, Flame } from 'lucide-react';
+import { Search, MessageCircle, Filter, ArrowLeft, Info, Flame, X } from 'lucide-react';
 import { siteConfig } from '@/lib/config';
 
-export default function MenuPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+function MenuContent() {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'all';
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [selectedSpiceFilter, setSelectedSpiceFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat && CATEGORIES.some((c) => c.id === cat)) {
+      setSelectedCategory(cat);
+    }
+  }, [searchParams]);
+
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    const url = new URL(window.location.href);
+    if (categoryId === 'all') {
+      url.searchParams.delete('category');
+    } else {
+      url.searchParams.set('category', categoryId);
+    }
+    window.history.replaceState(null, '', url.toString());
+  };
 
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter((item) => {
@@ -100,11 +122,21 @@ export default function MenuPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search dishes (e.g. Chowmein, Chilli Dry, Manchurian)..."
-              className="w-full bg-warmPorcelain-card border border-ricePaper-dark/80 rounded-full pl-11 pr-4 py-2.5 text-sm text-smokedSoy placeholder:text-mutedText/60 focus:ring-2 focus:ring-wokCopper outline-none shadow-sm"
+              className="w-full bg-warmPorcelain-card border border-ricePaper-dark/80 rounded-full pl-11 pr-10 py-2.5 text-sm text-smokedSoy placeholder:text-mutedText/60 focus:ring-2 focus:ring-wokCopper outline-none shadow-sm"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-mutedText hover:text-smokedSoy"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
-          {/* Spice Filter Buttons: 6-tier aligned */}
+          {/* Spice Filter Buttons */}
           <div className="flex items-center space-x-2 overflow-x-auto pb-2 lg:pb-0">
             <span className="text-xs font-medium text-mutedText shrink-0 flex items-center mr-1">
               <Filter className="w-3 h-3 mr-1 text-toastedSesame" />
@@ -139,7 +171,7 @@ export default function MenuPage() {
         <div className="mt-6 flex items-center space-x-2 overflow-x-auto pb-3">
           <button
             type="button"
-            onClick={() => setSelectedCategory('all')}
+            onClick={() => handleCategorySelect('all')}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shrink-0 border ${
               selectedCategory === 'all'
                 ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
@@ -154,7 +186,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 type="button"
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => handleCategorySelect(cat.id)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shrink-0 border ${
                   selectedCategory === cat.id
                     ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
@@ -186,7 +218,7 @@ export default function MenuPage() {
             <button
               type="button"
               onClick={() => {
-                setSelectedCategory('all');
+                handleCategorySelect('all');
                 setSelectedSpiceFilter('all');
                 setSearchQuery('');
               }}
@@ -198,5 +230,19 @@ export default function MenuPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function MenuPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="bg-warmPorcelain min-h-screen text-smokedSoy py-32 text-center">
+          <p className="text-mutedText">Loading menu catalog...</p>
+        </div>
+      }
+    >
+      <MenuContent />
+    </Suspense>
   );
 }

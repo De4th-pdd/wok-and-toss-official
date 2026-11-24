@@ -292,6 +292,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    isFeatured: true,
     tags: ['Premium Cashews', 'Smooth Glaze'],
   },
   {
@@ -669,6 +670,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 650,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    isFeatured: true,
     tags: ['Wok Aroma', 'Essential Side'],
   },
   {

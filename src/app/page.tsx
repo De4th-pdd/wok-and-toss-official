@@ -4,9 +4,10 @@ import Image from 'next/image';
 import { siteConfig } from '@/lib/config';
 import { MENU_ITEMS } from '@/data/menu';
 import DishCard from '@/components/DishCard';
+import CategoryBrowser from '@/components/CategoryBrowser';
+import FoodGallery from '@/components/FoodGallery';
 import SpiceGuideSection from '@/components/SpiceGuideSection';
 import OrderStepSection from '@/components/OrderStepSection';
-import FeaturedCarousel from '@/components/FeaturedCarousel';
 import LocalSeoFaq from '@/components/LocalSeoFaq';
 import {
   MessageCircle,
@@ -16,14 +17,14 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
-  // Select authentic featured dishes representing core menu pillars
-  const featuredDishes = MENU_ITEMS.filter((item) => item.isFeatured).slice(0, 6);
+  // Select top 6 verified bestselling dishes with authentic photography
+  const featuredDishes = MENU_ITEMS.filter((item) => item.isFeatured && item.image).slice(0, 6);
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. HERO SECTION: Food-Led & Direct */}
       <section className="relative min-h-[90vh] flex items-center bg-smokedSoy text-ricePaper overflow-hidden">
-        {/* Subtle background food video & ambient overlays */}
+        {/* Background video & ambient gradient overlays */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -52,7 +53,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-lg sm:text-xl text-ricePaper/85 leading-relaxed font-sans max-w-2xl font-light">
-                Chinese food for your cravings in Rawalpindi &amp; Islamabad. Freshly charred chowmein, rich simmering gravies, and customizable spice levels prepared to order.
+                Chinese food for your cravings in Rawalpindi &amp; Islamabad. Freshly charred chowmein, rich simmering gravies, and customizable spice levels prepared fresh to order.
               </p>
 
               {/* Operating Facts */}
@@ -129,7 +130,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. REAL FOOD & WOK CRAFT EXPERIENCE */}
+      {/* 2. FEATURED BESTSELLERS (Real Photography Lead) */}
+      <section className="py-20 bg-warmPorcelain-card text-smokedSoy" id="bestsellers">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <span className="text-xs font-semibold text-mutedText block mb-1">
+                Customer favorites
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy">
+                Featured bestsellers
+              </h2>
+              <p className="mt-2 text-base text-mutedText max-w-xl font-sans">
+                Our most craved dishes across Rawalpindi and Islamabad, photographed fresh from our kitchen.
+              </p>
+            </div>
+            <Link
+              href="/menu"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full border border-smokedSoy/20 hover:border-smokedSoy hover:bg-smokedSoy hover:text-warmPorcelain transition-all text-sm font-semibold self-start md:self-auto shrink-0"
+            >
+              <span>View full menu</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* 6-Dish Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredDishes.map((item) => (
+              <DishCard key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. POPULAR MENU CATEGORIES */}
+      <CategoryBrowser />
+
+      {/* 4. SHORT BRAND INTRODUCTION & WOK CRAFT */}
       <section className="py-20 bg-warmPorcelain text-smokedSoy border-y border-ricePaper-dark/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -191,7 +228,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Narrative Editorial Column */}
+            {/* Narrative Column */}
             <div className="lg:col-span-6 space-y-6 lg:pl-6">
               <span className="text-xs font-semibold text-mutedText block">
                 Fresh wok preparation
@@ -237,49 +274,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. FEATURED DISH SPOTLIGHT */}
-      <section className="py-20 bg-warmPorcelain-card text-smokedSoy" id="featured-menu">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div>
-              <span className="text-xs font-semibold text-mutedText block mb-1">
-                From our wok
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy">
-                Featured dishes
-              </h2>
-              <p className="mt-2 text-base text-mutedText max-w-xl font-sans">
-                Chowmein, sizzling gravies, and slow-simmered broths prepared fresh daily across Rawalpindi and Islamabad.
-              </p>
-            </div>
-            <Link
-              href="/menu"
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full border border-smokedSoy/20 hover:border-smokedSoy hover:bg-smokedSoy hover:text-warmPorcelain transition-all text-sm font-semibold self-start md:self-auto shrink-0"
-            >
-              <span>View full menu</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+      {/* 5. REAL FOOD & KITCHEN GALLERY */}
+      <FoodGallery />
 
-          {/* Dish Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredDishes.map((item) => (
-              <DishCard key={item.id} item={item} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE SPICE GUIDE SECTION */}
+      {/* 6. THE SPICE GUIDE SECTION */}
       <SpiceGuideSection />
 
-      {/* 5. HOW TO ORDER (5-step process + Interactive Composer) */}
+      {/* 7. HOW TO ORDER (5-step process + Enhanced Composer) */}
       <OrderStepSection />
 
-      {/* 6. ORIGINAL BRAND CAROUSEL ARCHIVE */}
-      <FeaturedCarousel />
-
-      {/* 7. LOCAL SERVICE AREA & OPENING HOURS */}
+      {/* 8. LOCAL SERVICE AREA & OPENING HOURS */}
       <section className="py-20 bg-ricePaper text-smokedSoy border-t border-ricePaper-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-warmPorcelain rounded-3xl p-8 sm:p-12 border border-ricePaper-dark/80 shadow-lg">
@@ -337,10 +341,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. LOCAL TWIN CITIES FAQS */}
+      {/* 9. LOCAL TWIN CITIES FAQS */}
       <LocalSeoFaq />
 
-      {/* 9. FINAL WHATSAPP CALL TO ACTION */}
+      {/* 10. FINAL WHATSAPP CALL TO ACTION */}
       <section className="py-20 bg-smokedSoy text-ricePaper relative overflow-hidden border-t border-toastedSesame/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
           <span className="text-xs font-semibold text-toastedSesame block">
