@@ -69,7 +69,7 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3.5 p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
                   <Clock className="w-5 h-5 text-roastedChilli mt-0.5 shrink-0" />
                   <div>
-                    <span className="font-bold text-smokedSoy block">Kitchen operating hours</span>
+                    <span className="font-bold text-smokedSoy block">Operating hours</span>
                     <span className="text-mutedText">Every day, 12:30 PM – 11:00 PM</span>
                     <span className="text-xs text-mutedText block mt-0.5">
                       Open Monday through Sunday for lunch, dinner, and evening cravings.
@@ -128,6 +128,39 @@ export default function ContactPage() {
                 <span>
                   <strong>Note on location:</strong> Wok &amp; Toss operates on a direct delivery model for Rawalpindi and Islamabad. We do not publish an unconfirmed public dining room address to avoid misleading visitors. All orders are placed via WhatsApp.
                 </span>
+              </div>
+            </div>
+
+            {/* Delivery & Fulfilment Transparency */}
+            <div className="bg-warmPorcelain-card p-8 rounded-3xl border border-ricePaper-dark/80 shadow-sm space-y-4">
+              <h3 className="font-serif text-xl font-bold text-smokedSoy">
+                Delivery &amp; Fulfilment Policy
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-sans">
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Service Coverage</span>
+                  <p className="text-mutedText">Rawalpindi and Islamabad across all accessible residential sectors and commercial zones.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Delivery Charges</span>
+                  <p className="text-mutedText">Calculated based on actual distance and rider routing. Confirmed transparently upfront on WhatsApp.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Estimated Delivery Time</span>
+                  <p className="text-mutedText">Typically 45–75 minutes. Dishes are seared fresh to order, not pre-packaged or held under heat lamps.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Payment Methods</span>
+                  <p className="text-mutedText">Cash on Delivery (COD) and Online Bank Transfer upon order dispatch.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Minimum Order</span>
+                  <p className="text-mutedText">No fixed minimum order amount. From a single chowmein box to full family spreads.</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-warmPorcelain border border-ricePaper-dark/60">
+                  <span className="font-bold text-smokedSoy block mb-0.5">Self-Pickup Option</span>
+                  <p className="text-mutedText">Pickup coordination is available upon request when placing your order on WhatsApp.</p>
+                </div>
               </div>
             </div>
           </div>

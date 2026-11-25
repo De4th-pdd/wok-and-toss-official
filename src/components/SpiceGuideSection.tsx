@@ -370,7 +370,7 @@ export default function SpiceGuideSection() {
                   Need your spice level adjusted?
                 </h4>
                 <p className="text-xs sm:text-sm text-ricePaper/80 font-sans mt-0.5">
-                  Spice levels can be fine-tuned by contacting us on WhatsApp. Whether you prefer extra mild seasoning for children or high-heat bird’s eye chili, our wok chefs tailor the batch to your craving.
+                  Spice levels can be fine-tuned by contacting us on WhatsApp. Whether you prefer extra mild seasoning for children or high-heat bird’s eye chili, the spice blend is tailored to your craving.
                 </p>
               </div>
             </div>

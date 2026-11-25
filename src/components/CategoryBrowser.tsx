@@ -10,7 +10,7 @@ export default function CategoryBrowser() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-xs font-semibold text-mutedText block mb-1">
-              Explore our kitchen
+              Explore our menu categories
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy">
               Popular menu categories

@@ -6,6 +6,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://wokandtoss.pk',
   ogImage: '/og-image.jpg',
   telephone: '+92 319 1932923',
+  phoneRaw: '923191932923',
   phoneDisplay: '+92 319 1932923',
   whatsappUrl:
     'https://wa.me/923191932923?text=Hi%20Wok%20%26%20Toss%21%20Please%20send%20me%20today%27s%20menu.',

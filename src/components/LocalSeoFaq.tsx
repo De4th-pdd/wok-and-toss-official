@@ -5,7 +5,7 @@ export const FAQS = [
   {
     question: 'Which areas does Wok & Toss serve?',
     answer:
-      'Wok & Toss serves customers across Rawalpindi and Islamabad, Pakistan. Because delivery arrangements depend on kitchen capacity and location, customers message their area on WhatsApp to confirm delivery options for their sector or neighborhood.',
+      'Wok & Toss serves customers across Rawalpindi and Islamabad, Pakistan. Because delivery arrangements depend on daily dispatch capacity and route timing, customers message their area on WhatsApp to confirm delivery options for their sector or neighborhood.',
   },
   {
     question: 'What are the opening hours of Wok & Toss?',
@@ -25,7 +25,7 @@ export const FAQS = [
   {
     question: 'How do I place an order with Wok & Toss?',
     answer:
-      'Ordering is straightforward: 1) Browse the menu online or message "MENU" on WhatsApp. 2) Pick your dishes and desired heat levels. 3) Send a WhatsApp message to +92 319 1932923 including your delivery area and the number of people ordering for. 4) Confirm current pricing and delivery timing directly with our kitchen team.',
+      'Ordering is straightforward: 1) Browse the menu online or message "MENU" on WhatsApp. 2) Pick your dishes and desired heat levels. 3) Send a WhatsApp message to +92 319 1932923 including your delivery area and the number of people ordering for. 4) Confirm current pricing and delivery timing directly with our WhatsApp dispatch team.',
   },
 ];
 

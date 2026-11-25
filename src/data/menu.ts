@@ -14,9 +14,7 @@ export type SpiceLevel =
   | 'Low to Medium'
   | 'Medium'
   | 'Spicy'
-  | 'Extra Spicy'
-  | 'Very Spicy'
-  | 'Customizable';
+  | 'Extra Spicy';
 
 export interface MenuItem {
   id: string;
@@ -34,6 +32,7 @@ export interface MenuItem {
   availabilityStatus: 'available' | 'sold-out' | 'pre-order';
   isFeatured?: boolean;
   tags?: string[];
+  allergens?: string[];
 }
 
 export interface CategoryMeta {
@@ -112,8 +111,9 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 600,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     isFeatured: true,
-    tags: ['Bestseller', 'Wok Hei', 'Chef Recommendation'],
+    tags: ['Bestseller', 'Wok Hei', 'Featured Dish'],
   },
   {
     id: 'vegetable-chowmein',
@@ -129,6 +129,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 500,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy'],
     tags: ['Vegetarian', 'Fresh Wok Toss'],
   },
   {
@@ -145,6 +146,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 700,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg','Crustaceans/Prawns'],
     isFeatured: true,
     tags: ['Signature', 'Trio Meat Feast'],
   },
@@ -162,6 +164,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 750,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     tags: ['Hearty', 'Prime Beef'],
   },
   {
@@ -178,6 +181,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg','Crustaceans/Prawns','Sesame'],
     tags: ['Seafood', 'Wok Tossed'],
   },
   {
@@ -194,6 +198,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 650,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     tags: ['Mushroom Lovers'],
   },
   {
@@ -202,7 +207,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'noodles',
     description: 'Spicy wok noodles tossed with spiced chicken fillets, fresh bird’s eye chilies, and fiery Sichuan chili oil.',
     image: null,
-    spiceLevel: 'Very Spicy',
+    spiceLevel: 'Spicy',
     spiceHeatValue: 4,
     portionSize: 'Med (Serves 1-2) / Lrg (Serves 3-4)',
     customerPrice: 1400,
@@ -210,6 +215,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 700,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     isFeatured: true,
     tags: ['Fiery Kick', 'Spice Lovers'],
   },
@@ -219,7 +225,7 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'noodles',
     description: 'Intense high-heat noodles packed with blistered red chilies, crushed Sichuan peppercorns, and blackened chili flakes.',
     image: null,
-    spiceLevel: 'Very Spicy',
+    spiceLevel: 'Extra Spicy',
     spiceHeatValue: 5,
     portionSize: 'Lrg (Serves 2-3)',
     customerPrice: 1650,
@@ -227,6 +233,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 800,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     tags: ['Extra Hot', 'Dare to Try'],
   },
   {
@@ -243,6 +250,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 900,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Egg'],
     tags: ['Crispy Texture', 'Heritage Recipe'],
   },
 
@@ -262,6 +270,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 800,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Sweet & Tangy', 'Mild Comfort'],
   },
   {
@@ -277,6 +286,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Tree Nuts/Almonds','Soy'],
     tags: ['Nutty & Rich', 'Velvety Broth'],
   },
   {
@@ -292,6 +302,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Tree Nuts/Cashews','Soy'],
     isFeatured: true,
     tags: ['Premium Cashews', 'Smooth Glaze'],
   },
@@ -308,6 +319,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 799,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Sichuan Aromatics'],
   },
   {
@@ -323,6 +335,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 750,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Sweet-Tart', 'Classic Recipe'],
   },
   {
@@ -338,6 +351,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 799,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     isFeatured: true,
     tags: ['House Specialty', 'Bestseller'],
   },
@@ -354,6 +368,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 750,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Garden Fresh'],
   },
   {
@@ -369,6 +384,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 799,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Warm Peppery Heat'],
   },
   {
@@ -384,6 +400,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Peanuts','Soy'],
     isFeatured: true,
     tags: ['Signature Kick', 'Peanut Crunch'],
   },
@@ -400,6 +417,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 780,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Wok Caramelized'],
   },
   {
@@ -415,6 +433,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Maximum Heat', 'Fire Cravers'],
   },
   {
@@ -430,6 +449,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy','Sesame'],
     isFeatured: true,
     tags: ['Legendary Dry Dish', 'Customer Favorite'],
   },
@@ -450,6 +470,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 950,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Aromatic Garlic'],
   },
   {
@@ -465,6 +486,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 900,
     priceConfirmationStatus: 'unconfirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Classic Heritage'],
   },
   {
@@ -480,6 +502,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 950,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Beef & Crisp Greens'],
   },
   {
@@ -495,6 +518,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 950,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Savory Umami'],
   },
   {
@@ -510,8 +534,9 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 980,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     isFeatured: true,
-    tags: ['Chef Signature'],
+    tags: ['House Specialty'],
   },
   {
     id: 'firecracker-beef',
@@ -526,6 +551,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1050,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['High Heat'],
   },
   {
@@ -541,6 +567,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1050,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy','Sesame'],
     tags: ['Dry Wok Sear', 'Prime Beef'],
   },
 
@@ -560,6 +587,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1150,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Crustaceans/Prawns','Soy'],
     tags: ['Garlic Seafood'],
   },
   {
@@ -575,6 +603,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1100,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Crustaceans/Prawns','Soy'],
     tags: ['Clean Flavors'],
   },
   {
@@ -590,6 +619,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1150,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Crustaceans/Prawns','Soy'],
     tags: ['Zesty Spice'],
   },
   {
@@ -605,6 +635,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1180,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Crustaceans/Prawns','Soy'],
     tags: ['Rich Onion Caramel'],
   },
   {
@@ -620,6 +651,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1250,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Crustaceans/Prawns','Soy'],
     tags: ['Fiery Seafood'],
   },
 
@@ -639,6 +671,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 800,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy','Crustaceans/Prawns'],
     isFeatured: true,
     tags: ['House Signature', 'Triple Protein'],
   },
@@ -655,6 +688,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 750,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy'],
     tags: ['Classic Comfort'],
   },
   {
@@ -670,6 +704,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 650,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy'],
     isFeatured: true,
     tags: ['Wok Aroma', 'Essential Side'],
   },
@@ -686,6 +721,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 850,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy'],
     tags: ['Spicy Rice'],
   },
   {
@@ -701,6 +737,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 750,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy'],
     tags: ['Fusion Flavor'],
   },
   {
@@ -716,6 +753,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 600,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Vegetarian'],
   },
 
@@ -736,6 +774,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 350,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy'],
     isFeatured: true,
     tags: ['All-Time Classic', 'Pepper & Tang'],
   },
@@ -753,6 +792,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 300,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg'],
     tags: ['Sweet Corn', 'Kid Friendly'],
   },
   {
@@ -769,8 +809,9 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 400,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Egg','Soy','Crustaceans/Prawns'],
     isFeatured: true,
-    tags: ['Chef Signature Broth'],
+    tags: ['House Specialty Broth'],
   },
   {
     id: 'bangkok-chicken-soup',
@@ -786,6 +827,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 350,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Citrus Heat', 'Thai Inspired'],
   },
   {
@@ -802,6 +844,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 350,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Egg','Soy'],
     tags: ['Comfort Bowl'],
   },
 
@@ -821,6 +864,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 700,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Egg'],
     tags: ['Crispy Batter'],
   },
   {
@@ -836,6 +880,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 650,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Egg'],
     tags: ['Shareable'],
   },
   {
@@ -851,6 +896,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 700,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Egg','Sesame'],
     tags: ['Sesame Crunch'],
   },
   {
@@ -866,6 +912,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 680,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Soy','Sesame'],
     tags: ['Sticky Sweet'],
   },
   {
@@ -881,6 +928,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 1050,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Gluten/Wheat','Egg','Crustaceans/Prawns'],
     tags: ['Premium Panko'],
   },
 
@@ -900,6 +948,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 550,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Fusion Favorite'],
   },
   {
@@ -915,6 +964,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 600,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy','Sesame'],
     tags: ['Spicy Loaded'],
   },
   {
@@ -930,6 +980,7 @@ export const MENU_ITEMS: MenuItem[] = [
     supplierReferencePrice: 700,
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
+    allergens: ['Soy'],
     tags: ['Beef Loaded'],
   },
 ];

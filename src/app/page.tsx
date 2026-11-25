@@ -6,6 +6,7 @@ import { MENU_ITEMS } from '@/data/menu';
 import DishCard from '@/components/DishCard';
 import CategoryBrowser from '@/components/CategoryBrowser';
 import FoodGallery from '@/components/FoodGallery';
+import CustomerSpotlight from '@/components/CustomerSpotlight';
 import SpiceGuideSection from '@/components/SpiceGuideSection';
 import OrderStepSection from '@/components/OrderStepSection';
 import LocalSeoFaq from '@/components/LocalSeoFaq';
@@ -142,7 +143,7 @@ export default function HomePage() {
                 Featured bestsellers
               </h2>
               <p className="mt-2 text-base text-mutedText max-w-xl font-sans">
-                Our most craved dishes across Rawalpindi and Islamabad, photographed fresh from our kitchen.
+                Our most craved dishes across Rawalpindi and Islamabad, photographed fresh from real customer orders.
               </p>
             </div>
             <Link
@@ -237,7 +238,7 @@ export default function HomePage() {
                 Real wok heat. Tossed fresh to order.
               </h2>
               <p className="text-base sm:text-lg text-mutedText leading-relaxed font-sans">
-                Every dish at Wok &amp; Toss is seared over high-heat gas burners. We don&apos;t reheat pre-cooked batches. The char of the wok, the crunch of sliced vegetables, tender chicken and beef cuts, and whole dried chilies come together in minutes.
+                Every dish at Wok &amp; Toss is seared to order over intense wok heat. The char of the wok, the crunch of sliced vegetables, tender chicken and beef cuts, and whole dried chilies come together fresh for each delivery.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -274,16 +275,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. REAL FOOD & KITCHEN GALLERY */}
+      {/* 5. REAL FOOD GALLERY */}
       <FoodGallery />
 
-      {/* 6. THE SPICE GUIDE SECTION */}
+      {/* 6. REAL CUSTOMER ORDERS SPOTLIGHT */}
+      <CustomerSpotlight />
+
+      {/* 7. THE SPICE GUIDE SECTION */}
       <SpiceGuideSection />
 
-      {/* 7. HOW TO ORDER (5-step process + Enhanced Composer) */}
+      {/* 8. HOW TO ORDER (5-step process + Enhanced Composer) */}
       <OrderStepSection />
 
-      {/* 8. LOCAL SERVICE AREA & OPENING HOURS */}
+      {/* 9. LOCAL SERVICE AREA & OPENING HOURS */}
       <section className="py-20 bg-ricePaper text-smokedSoy border-t border-ricePaper-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-warmPorcelain rounded-3xl p-8 sm:p-12 border border-ricePaper-dark/80 shadow-lg">
@@ -300,7 +304,7 @@ export default function HomePage() {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-sm">
                   <div className="p-4 rounded-xl bg-warmPorcelain-card border border-ricePaper-dark/60">
-                    <span className="block font-serif font-bold text-smokedSoy text-base">Kitchen operating hours</span>
+                    <span className="block font-serif font-bold text-smokedSoy text-base">Operating hours</span>
                     <span className="text-mutedText block mt-1">Every day, 12:30 PM – 11:00 PM</span>
                   </div>
                   <div className="p-4 rounded-xl bg-warmPorcelain-card border border-ricePaper-dark/60">
@@ -341,10 +345,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. LOCAL TWIN CITIES FAQS */}
+      {/* 10. LOCAL TWIN CITIES FAQS */}
       <LocalSeoFaq />
 
-      {/* 10. FINAL WHATSAPP CALL TO ACTION */}
+      {/* 11. FINAL WHATSAPP CALL TO ACTION */}
       <section className="py-20 bg-smokedSoy text-ricePaper relative overflow-hidden border-t border-toastedSesame/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
           <span className="text-xs font-semibold text-toastedSesame block">

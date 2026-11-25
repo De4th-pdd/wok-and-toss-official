@@ -54,13 +54,13 @@ export default function FoodGallery() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-xs font-semibold text-toastedSesame block mb-1">
-              From our kitchen
+              Fresh order gallery
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-warmPorcelain">
               Real food. Real wok craft.
             </h2>
             <p className="mt-2 text-base text-ricePaper/80 max-w-xl font-sans">
-              No generic stock photos or AI-generated dishes. Every photo and clip depicts real orders prepared fresh in our kitchen.
+              No generic stock photos or AI-generated dishes. Every photo and clip depicts real orders prepared fresh for Twin Cities deliveries.
             </p>
           </div>
 

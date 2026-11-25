@@ -58,7 +58,7 @@ export default function SpiceGuidePage() {
                 Spice adjustment policy
               </h2>
               <p className="text-sm text-ricePaper/85 leading-relaxed font-sans">
-                As stated directly on our brand graphics: <span className="text-toastedSesame font-medium">&quot;Spice levels can be adjusted by contacting Wok &amp; Toss on WhatsApp.&quot;</span> Whether you have family members who prefer zero chili or cravers who demand extra bird&apos;s eye heat, our chefs adjust the wok seasoning for your specific order.
+                As stated directly on our brand graphics: <span className="text-toastedSesame font-medium">&quot;Spice levels can be adjusted by contacting Wok &amp; Toss on WhatsApp.&quot;</span> Whether you have family members who prefer zero chili or cravers who demand extra bird&apos;s eye heat, seasoning and heat levels are customized for each order.
               </p>
               <div className="pt-2">
                 <a

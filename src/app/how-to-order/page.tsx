@@ -35,7 +35,7 @@ export default function HowToOrderPage() {
               How to order at Wok &amp; Toss
             </h1>
             <p className="mt-4 text-base sm:text-lg text-ricePaper/80 leading-relaxed font-sans font-light">
-              We operate an honest, kitchen-direct WhatsApp ordering funnel. Every meal is cooked to order specifically for your household, ensuring genuine wok hei and personalized spice levels.
+              We operate a direct WhatsApp ordering model. Every meal is cooked to order specifically for your household, ensuring genuine wok hei and personalized spice levels.
             </p>
           </div>
         </div>
@@ -56,22 +56,57 @@ export default function HowToOrderPage() {
                 Why WhatsApp ordering?
               </h2>
               <p className="text-sm text-mutedText leading-relaxed font-sans">
-                Unlike mass-production fast food chains, Wok &amp; Toss customizes every wok batch. Our kitchen team confirms live delivery availability for your specific Twin Cities sector, verifies current daily ingredient selections, and ensures your spice preferences are passed directly to the wok chef.
+                Unlike mass-production fast food chains, Wok &amp; Toss customizes every wok batch. Our dispatch team confirms live delivery availability for your specific Twin Cities sector, verifies current daily dish selections, and ensures your spice preferences are passed directly for fresh wok preparation.
               </p>
               <ul className="space-y-2 text-xs sm:text-sm text-mutedText-dark font-sans pt-2">
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
-                  <span>Real-time kitchen availability confirmation</span>
+                  <span>Real-time daily availability confirmation</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
-                  <span>Direct communication with our kitchen coordination team</span>
+                  <span>Direct communication with our order fulfillment team</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
                   <span>Full control to edit your message and order details before dispatch</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Structured Delivery & Fulfillment Information */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="bg-warmPorcelain-card rounded-3xl border border-ricePaper-dark/80 p-8 shadow-sm">
+          <h2 className="font-serif text-2xl font-bold text-smokedSoy mb-6">
+            Delivery &amp; Fulfillment Transparency
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-sans">
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Service Area</span>
+              <p className="text-mutedText">Rawalpindi and Islamabad across all major sectors and neighborhoods.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Delivery Charges</span>
+              <p className="text-mutedText">Calculated based on actual distance and rider routing. Confirmed on WhatsApp with zero hidden fees.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Estimated Prep &amp; Delivery</span>
+              <p className="text-mutedText">Typically 45–75 minutes. Every meal is seared fresh to order over high flame.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Payment Methods</span>
+              <p className="text-mutedText">Cash on Delivery (COD) and Online Bank Transfer upon order dispatch.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Minimum Order</span>
+              <p className="text-mutedText">No fixed minimum order amount. We cater from individual boxes to family spreads.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Self-Pickup</span>
+              <p className="text-mutedText">Pickup coordination is available upon request when placing your order on WhatsApp.</p>
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function Footer() {
               <li className="flex items-start space-x-2.5">
                 <Clock className="w-4 h-4 text-toastedSesame mt-0.5 shrink-0" />
                 <div>
-                  <span className="block font-medium text-warmPorcelain">Kitchen hours</span>
+                  <span className="block font-medium text-warmPorcelain">Operating hours</span>
                   <span className="text-xs text-ricePaper/70">{siteConfig.openingHoursDisplay}</span>
                 </div>
               </li>
@@ -141,8 +141,8 @@ export default function Footer() {
               Craving fresh Chinese food in Islamabad or Rawalpindi? Send &quot;MENU&quot; on WhatsApp, specify your area and party size, and our team will share the latest availability and delivery arrangements.
             </p>
             <div className="p-3 bg-smokedSoy-950/70 rounded-lg border border-toastedSesame/20 text-xs text-toastedSesame/90">
-              <span className="font-semibold block text-warmPorcelain">Direct kitchen ordering:</span>
-              No third-party markups. High-heat wok cooking delivered piping hot.
+              <span className="font-semibold block text-warmPorcelain">Direct WhatsApp ordering:</span>
+              High-heat wok cooking prepared fresh to order and coordinated directly via WhatsApp.
             </div>
           </div>
         </div>

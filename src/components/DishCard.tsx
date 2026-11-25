@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { MenuItem, formatCustomerPrice, getWhatsAppOrderUrl } from '@/data/menu';
-import { MessageCircle, Flame } from 'lucide-react';
+import { MessageCircle, Flame, AlertCircle } from 'lucide-react';
 
 interface DishCardProps {
   item: MenuItem;
@@ -11,7 +11,7 @@ export default function DishCard({ item }: DishCardProps) {
   const displayPrice = formatCustomerPrice(item);
   const whatsappUrl = getWhatsAppOrderUrl(item);
 
-  // Map heat level to badge colors
+  // Map 6 standardized heat levels to badge colors
   const getSpiceBadgeStyle = (level: string) => {
     switch (level) {
       case 'Not Spicy':
@@ -23,7 +23,6 @@ export default function DishCard({ item }: DishCardProps) {
       case 'Medium':
         return 'bg-orange-100 text-orange-950 border-orange-300';
       case 'Spicy':
-      case 'Very Spicy':
         return 'bg-red-50 text-red-900 border-red-200';
       case 'Extra Spicy':
         return 'bg-roastedChilli-light text-roastedChilli border-roastedChilli/30 font-semibold';
@@ -89,12 +88,21 @@ export default function DishCard({ item }: DishCardProps) {
           <h3 className="font-serif text-xl font-bold text-smokedSoy group-hover:text-roastedChilli transition-colors leading-snug">
             {item.name}
           </h3>
-          <p className="mt-2 text-sm text-mutedText leading-relaxed line-clamp-3">
+          <p className="mt-2 text-sm text-mutedText leading-relaxed line-clamp-3 font-sans">
             {item.description}
           </p>
 
+          {/* Allergens badge list */}
+          {item.allergens && item.allergens.length > 0 && (
+            <div className="mt-3 text-[11px] text-mutedText flex items-center gap-1.5 flex-wrap">
+              <span className="font-semibold text-smokedSoy/70">Allergens:</span>
+              <span className="text-mutedText-dark">{item.allergens.join(', ')}</span>
+            </div>
+          )}
+
+          {/* Dish tags */}
           {item.tags && item.tags.length > 0 && (
-            <div className="mt-3.5 flex flex-wrap gap-1.5">
+            <div className="mt-3 flex flex-wrap gap-1.5">
               {item.tags.map((tag) => (
                 <span
                   key={tag}
@@ -117,9 +125,12 @@ export default function DishCard({ item }: DishCardProps) {
               className={`font-serif text-base font-bold ${
                 item.priceConfirmationStatus === 'confirmed'
                   ? 'text-smokedSoy'
-                  : 'text-roastedChilli font-sans text-xs italic'
+                  : 'text-roastedChilli font-sans text-xs italic flex items-center gap-1'
               }`}
             >
+              {item.priceConfirmationStatus !== 'confirmed' && (
+                <AlertCircle className="w-3 h-3 text-roastedChilli inline shrink-0" />
+              )}
               {displayPrice}
             </span>
           </div>
