@@ -107,22 +107,12 @@ export default function HomePage() {
                     className="object-cover"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-smokedSoy-950/85 via-transparent to-transparent" />
-
-                  <div className="absolute bottom-5 inset-x-5 p-4 rounded-2xl bg-smokedSoy-950/90 border border-toastedSesame/30 backdrop-blur-md">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-xs text-toastedSesame block font-medium">
-                          Fresh order fulfillment
-                        </span>
-                        <span className="font-serif text-lg font-bold text-warmPorcelain">
-                          Chilli Dry &amp; Chowmein
-                        </span>
-                      </div>
-                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-roastedChilli text-warmPorcelain">
-                        Fiery heat
-                      </span>
-                    </div>
+                  <div className="absolute top-4 left-4 z-10 flex items-center space-x-2 bg-smokedSoy-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-toastedSesame/30 text-xs">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="font-medium text-warmPorcelain">Real customer order</span>
+                  </div>
+                  <div className="absolute top-4 right-4 z-10 bg-roastedChilli/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-warmPorcelain shadow-md border border-roastedChilli/40">
+                    Chowmein &amp; Chilli Dry
                   </div>
                 </div>
               </div>
@@ -173,7 +163,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Visual clip & photo grid */}
             <div className="lg:col-span-6 grid grid-cols-2 gap-4">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
                 <Image
                   src="/assets/dishes/signature-chowmein.webp"
                   alt="Wok Tossed Signature Chicken Chowmein"
@@ -181,12 +171,12 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 50vw, 300px"
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute bottom-3 left-3 px-2 py-1 rounded bg-smokedSoy-950/80 text-xs font-sans text-warmPorcelain">
+                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-smokedSoy-950/85 backdrop-blur-sm text-xs font-sans text-warmPorcelain border border-toastedSesame/20 shadow-sm">
                   Classic Chicken Chowmein
                 </div>
               </div>
 
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
                 <video
                   autoPlay
                   loop
@@ -197,12 +187,12 @@ export default function HomePage() {
                 >
                   <source src="/assets/video/chilli-chicken.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute bottom-3 left-3 px-2 py-1 rounded bg-smokedSoy-950/80 text-xs font-sans text-warmPorcelain">
+                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-smokedSoy-950/85 backdrop-blur-sm text-xs font-sans text-warmPorcelain border border-toastedSesame/20 shadow-sm">
                   Sizzling Chilli Dry
                 </div>
               </div>
 
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
                 <Image
                   src="/assets/dishes/hot-and-sour-soup.webp"
                   alt="Rich Hot & Sour Broth with Egg Ribbons"
@@ -210,12 +200,12 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 50vw, 300px"
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute bottom-3 left-3 px-2 py-1 rounded bg-smokedSoy-950/80 text-xs font-sans text-warmPorcelain">
+                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-smokedSoy-950/85 backdrop-blur-sm text-xs font-sans text-warmPorcelain border border-toastedSesame/20 shadow-sm">
                   Hot &amp; Sour Broth
                 </div>
               </div>
 
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-ricePaper-dark shadow-sm bg-smokedSoy-950">
                 <Image
                   src="/assets/dishes/lunch-box-feast.webp"
                   alt="Wok & Toss Combo Takeaway Box"
@@ -223,7 +213,7 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 50vw, 300px"
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute bottom-3 left-3 px-2 py-1 rounded bg-smokedSoy-950/80 text-xs font-sans text-warmPorcelain">
+                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-smokedSoy-950/85 backdrop-blur-sm text-xs font-sans text-warmPorcelain border border-toastedSesame/20 shadow-sm">
                   Combo Takeaway Box
                 </div>
               </div>

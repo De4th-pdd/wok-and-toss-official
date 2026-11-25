@@ -7,41 +7,35 @@ import { Eye, Play } from 'lucide-react';
 
 const GALLERY_ITEMS = [
   {
-    title: 'Chilli Dry & Chowmein Combo',
+    title: 'Sizzling Chilli Dry Chicken',
     category: 'Twin Cities Delivery Order',
-    src: '/assets/dishes/chilli-dry-and-chowmein-combo.webp',
-    aspect: 'aspect-[3/4]',
+    src: '/assets/dishes/chilli-dry-chicken.webp',
   },
   {
-    title: 'Sizzling Chilli Dry Chicken',
-    category: 'High-Heat Wok Toss',
+    title: 'High-Heat Wok Sizzle',
+    category: 'Live Wok Toss Footage',
     video: '/assets/video/chilli-chicken.mp4',
     poster: '/assets/video/chilli-chicken-poster.webp',
-    aspect: 'aspect-[3/4]',
   },
   {
     title: 'Signature Chicken Chowmein',
     category: 'Wok-Charred Egg Noodles',
     src: '/assets/dishes/signature-chowmein.webp',
-    aspect: 'aspect-square',
   },
   {
     title: 'Hot & Sour Master Broth',
     category: 'Slow-Simmered Daily',
     src: '/assets/dishes/hot-and-sour-soup.webp',
-    aspect: 'aspect-square',
   },
   {
     title: 'Kung Pao Kick Chicken',
     category: 'Peanuts & Whole Red Chilies',
     src: '/assets/dishes/kung-pao-sauce.webp',
-    aspect: 'aspect-square',
   },
   {
     title: '3-Compartment Takeaway Box',
     category: 'Lunch & Dinner Feast',
     src: '/assets/dishes/lunch-box-feast.webp',
-    aspect: 'aspect-square',
   },
 ];
 
@@ -81,7 +75,7 @@ export default function FoodGallery() {
               key={idx}
               className="group relative rounded-2xl overflow-hidden border border-toastedSesame/20 bg-smokedSoy-950 shadow-md flex flex-col justify-end"
             >
-              <div className={`relative w-full ${item.aspect} overflow-hidden`}>
+              <div className="relative w-full aspect-square overflow-hidden">
                 {item.video ? (
                   <video
                     autoPlay

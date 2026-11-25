@@ -80,26 +80,28 @@ export default function FeaturedCarousel() {
 
         {/* Carousel Showcase */}
         <div className="mt-10 relative max-w-xl mx-auto">
-          <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden border border-toastedSesame/30 bg-smokedSoy-950 shadow-xl">
+          <div className="relative aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden border border-toastedSesame/30 bg-smokedSoy-950 shadow-xl p-2 sm:p-3">
             <Image
               src={SLIDES[currentIndex].src}
               alt={SLIDES[currentIndex].title}
               fill
               sizes="(max-width: 768px) 100vw, 600px"
-              className="object-contain"
+              className="object-contain p-2"
               priority={currentIndex === 0}
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-smokedSoy-950 via-smokedSoy-950/80 to-transparent p-5 text-center">
-              <span className="text-xs text-toastedSesame font-medium block">
-                Slide {currentIndex + 1} of {SLIDES.length}
-              </span>
-              <h3 className="font-serif text-lg sm:text-xl font-bold text-warmPorcelain mt-0.5">
-                {SLIDES[currentIndex].title}
-              </h3>
-              <p className="text-xs text-ricePaper/70 mt-0.5">
-                {SLIDES[currentIndex].subtitle}
-              </p>
-            </div>
+          </div>
+
+          {/* Slide Caption (Unobtrusive & outside the slide image) */}
+          <div className="mt-4 text-center">
+            <span className="text-xs text-toastedSesame font-medium block">
+              Slide {currentIndex + 1} of {SLIDES.length}
+            </span>
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-warmPorcelain mt-0.5">
+              {SLIDES[currentIndex].title}
+            </h3>
+            <p className="text-xs text-ricePaper/70 mt-0.5">
+              {SLIDES[currentIndex].subtitle}
+            </p>
           </div>
 
           {/* Navigation Arrows */}

@@ -35,7 +35,7 @@ export default function DishCard({ item }: DishCardProps) {
     <article className="group bg-warmPorcelain-card rounded-2xl border border-ricePaper-dark/80 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
       {/* Visual Header: Authentic photography or deliberate typography card */}
       {item.image ? (
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-smokedSoy-950">
+        <div className="relative aspect-square w-full overflow-hidden bg-smokedSoy-950">
           <Image
             src={item.image}
             alt={`${item.name} at Wok & Toss Chinese Food`}
@@ -43,23 +43,23 @@ export default function DishCard({ item }: DishCardProps) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-smokedSoy/75 via-transparent to-transparent" />
-          
-          <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+          <div className="absolute top-3 left-3 z-10">
             <span
-              className={`inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs font-medium border ${getSpiceBadgeStyle(
+              className={`inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-medium border ${getSpiceBadgeStyle(
                 item.spiceLevel
-              )} shadow-sm bg-warmPorcelain/95`}
+              )} shadow-sm bg-warmPorcelain/95 backdrop-blur-sm`}
             >
               <Flame className="w-3 h-3 text-roastedChilli" />
               <span>{item.spiceLevel}</span>
             </span>
-            {item.portionSize && (
-              <span className="text-xs text-warmPorcelain bg-smokedSoy-950/80 px-2 py-0.5 rounded-md font-sans">
+          </div>
+          {item.portionSize && (
+            <div className="absolute top-3 right-3 z-10">
+              <span className="text-xs text-warmPorcelain bg-smokedSoy-950/85 backdrop-blur-sm px-2.5 py-1 rounded-md font-sans border border-toastedSesame/30 shadow-sm">
                 {item.portionSize}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       ) : (
         /* Deliberate typography-led card header (No fake stock photo) */

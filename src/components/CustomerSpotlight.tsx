@@ -15,12 +15,12 @@ interface OrderSpotlightItem {
 
 const SPOTLIGHT_ORDERS: OrderSpotlightItem[] = [
   {
-    id: 'combo-box',
-    title: 'Chilli Dry & Chowmein Combo Spread',
+    id: 'chilli-dry',
+    title: 'Sizzling Chilli Dry Chicken Box',
     area: 'Rawalpindi delivery',
-    image: '/assets/dishes/chilli-dry-and-chowmein-combo.webp',
-    description: 'Sizzling green chili dry chicken paired with wok-tossed egg chowmein in heat-retaining delivery packaging.',
-    tag: 'Popular Combo',
+    image: '/assets/dishes/chilli-dry-chicken.webp',
+    description: 'Crisp chicken strips seared with toasted sesame seeds and fresh green chilies in heat-retaining delivery packaging.',
+    tag: 'Bestseller',
   },
   {
     id: 'lunch-feast',
@@ -86,7 +86,7 @@ export default function CustomerSpotlight() {
               className="bg-warmPorcelain-card rounded-2xl border border-ricePaper-dark/80 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[4/3] w-full bg-smokedSoy-950 overflow-hidden">
+                <div className="relative aspect-square w-full bg-smokedSoy-950 overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -94,13 +94,13 @@ export default function CustomerSpotlight() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="text-[11px] font-semibold bg-smokedSoy-950/85 text-warmPorcelain px-2.5 py-0.5 rounded-full border border-toastedSesame/30">
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[11px] font-semibold bg-smokedSoy-950/85 backdrop-blur-sm text-warmPorcelain px-2.5 py-1 rounded-full border border-toastedSesame/30 shadow-sm">
                       {item.tag}
                     </span>
                   </div>
-                  <div className="absolute bottom-2 right-2">
-                    <span className="text-[10px] text-warmPorcelain/90 bg-smokedSoy/90 px-2 py-0.5 rounded">
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="text-[11px] font-medium text-warmPorcelain bg-smokedSoy-950/85 backdrop-blur-sm px-2.5 py-1 rounded-md border border-toastedSesame/20 shadow-sm">
                       {item.area}
                     </span>
                   </div>
