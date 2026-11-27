@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { siteConfig } from '@/lib/config';
-import { FacebookIcon } from '@/components/Icons';
-import { MessageCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '@/components/Icons';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface OrderSpotlightItem {
   id: string;
@@ -27,8 +27,8 @@ const SPOTLIGHT_ORDERS: OrderSpotlightItem[] = [
     title: 'Twin Cities Lunch Box Feast',
     area: 'Islamabad delivery',
     image: '/assets/dishes/lunch-box-feast.webp',
-    description: 'Freshly prepared chicken gravy, egg fried rice, and crisp starters prepared for a multi-person office lunch order.',
-    tag: 'Group Order',
+    description: 'Authentic 3-compartment takeaway box with wok-tossed chowmein, egg fried rice, and savory chicken wings.',
+    tag: 'Combo Feast',
   },
   {
     id: 'signature-chowmein',
@@ -40,10 +40,10 @@ const SPOTLIGHT_ORDERS: OrderSpotlightItem[] = [
   },
   {
     id: 'kung-pao-cashew',
-    title: 'Kung Pao & Cashew Dinner Platter',
+    title: 'Kung Pao Stir-Fry Platter',
     area: 'Sector order',
     image: '/assets/dishes/kung-pao-cashew.webp',
-    description: 'Spiced chicken stir-fry with roasted cashews, whole dried chilies, and scallions in a glossy savory reduction.',
+    description: 'Spiced chicken stir-fry with bell peppers, whole dried chilies, and scallions in a glossy savory reduction.',
     tag: 'Dinner Spread',
   },
 ];
@@ -62,20 +62,33 @@ export default function CustomerSpotlight() {
               Fresh orders on the move
             </h2>
             <p className="mt-2 text-base text-mutedText max-w-xl font-sans leading-relaxed">
-              Real meals prepared for homes, workplaces, and weekend gatherings across Rawalpindi and Islamabad. No studio mockups or stock food images.
+              Real meals prepared for homes, workplaces, and evening cravings across Rawalpindi and Islamabad. No stock food images.
             </p>
           </div>
 
-          <a
-            href={siteConfig.facebookUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-smokedSoy/20 hover:border-smokedSoy hover:bg-smokedSoy hover:text-warmPorcelain transition-all text-xs font-semibold self-start md:self-auto shrink-0 shadow-sm"
-          >
-            <FacebookIcon className="w-3.5 h-3.5 text-roastedChilli" />
-            <span>Follow our Facebook page</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          <div className="flex items-center space-x-2.5 self-start md:self-auto shrink-0">
+            <a
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full border border-smokedSoy/20 hover:border-smokedSoy hover:bg-smokedSoy hover:text-warmPorcelain transition-all text-xs font-semibold shadow-sm"
+            >
+              <InstagramIcon className="w-3.5 h-3.5 text-roastedChilli" />
+              <span>Instagram</span>
+              <ArrowRight className="w-3 h-3" />
+            </a>
+
+            <a
+              href={siteConfig.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full border border-smokedSoy/20 hover:border-smokedSoy hover:bg-smokedSoy hover:text-warmPorcelain transition-all text-xs font-semibold shadow-sm"
+            >
+              <FacebookIcon className="w-3.5 h-3.5 text-roastedChilli" />
+              <span>Facebook</span>
+              <ArrowRight className="w-3 h-3" />
+            </a>
+          </div>
         </div>
 
         {/* Grid of Real Customer Orders */}
@@ -123,9 +136,9 @@ export default function CustomerSpotlight() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-warmPorcelain border border-ricePaper-dark/90 hover:border-roastedChilli hover:bg-roastedChilli hover:text-warmPorcelain text-xs font-semibold text-smokedSoy transition-colors"
+                  className="w-full inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-warmPorcelain border border-ricePaper-dark/90 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white text-xs font-semibold text-smokedSoy transition-colors"
                 >
-                  <MessageCircle className="w-3.5 h-3.5 text-roastedChilli" />
+                  <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] group-hover:text-white" />
                   <span>Order on WhatsApp</span>
                 </a>
               </div>
@@ -133,7 +146,7 @@ export default function CustomerSpotlight() {
           ))}
         </div>
 
-        {/* Facebook & Verification Banner */}
+        {/* Verification Banner */}
         <div className="mt-10 p-6 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/80 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
           <div className="flex items-center space-x-3 text-xs sm:text-sm text-mutedText font-sans">
             <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
@@ -145,9 +158,9 @@ export default function CustomerSpotlight() {
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain text-xs font-bold shrink-0 shadow transition-all"
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold shrink-0 shadow transition-all"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
+            <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
             <span>Send &quot;MENU&quot; for today&apos;s specials</span>
           </a>
         </div>

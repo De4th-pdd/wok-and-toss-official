@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import OrderStepSection from '@/components/OrderStepSection';
-import { ArrowLeft, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'How to Order via WhatsApp',
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function HowToOrderPage() {
   return (
-    <div className="bg-warmPorcelain min-h-screen text-smokedSoy pb-24">
+    <div className="bg-warmPorcelain min-h-screen text-smokedSoy pb-20">
       {/* Editorial Header */}
-      <section className="bg-smokedSoy text-ricePaper pt-16 pb-14 border-b border-toastedSesame/20 relative overflow-hidden">
+      <section className="bg-smokedSoy text-ricePaper pt-24 sm:pt-28 pb-12 border-b border-toastedSesame/20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <Link
@@ -28,7 +28,7 @@ export default function HowToOrderPage() {
               <span>Back to home</span>
             </Link>
             
-            <span className="text-xs font-semibold text-toastedSesame block mb-1">
+            <span className="text-xs font-semibold text-toastedSesame block mb-1 uppercase tracking-wider">
               Ordering process
             </span>
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-warmPorcelain">
@@ -41,15 +41,15 @@ export default function HowToOrderPage() {
         </div>
       </section>
 
-      {/* Main Order Steps & Interactive Composer */}
-      <OrderStepSection />
+      {/* Main Order Steps & Interactive Composer (Duplicate header suppressed) */}
+      <OrderStepSection hideHeader={true} />
 
       {/* Why We Use WhatsApp Ordering Notice */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="bg-warmPorcelain-card rounded-3xl border border-ricePaper-dark/80 p-8 shadow-sm">
+        <div className="bg-warmPorcelain-card rounded-3xl border border-ricePaper-dark/80 p-6 sm:p-8 shadow-sm">
           <div className="flex items-start space-x-4">
-            <div className="w-10 h-10 rounded-xl bg-roastedChilli/10 border border-roastedChilli/30 flex items-center justify-center shrink-0 mt-1">
-              <ShieldAlert className="w-5 h-5 text-roastedChilli" />
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-1">
+              <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="space-y-3">
               <h2 className="font-serif text-2xl font-bold text-smokedSoy">
@@ -60,15 +60,15 @@ export default function HowToOrderPage() {
               </p>
               <ul className="space-y-2 text-xs sm:text-sm text-mutedText-dark font-sans pt-2">
                 <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Real-time daily availability confirmation</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Direct communication with our order fulfillment team</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-roastedChilli shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Full control to edit your message and order details before dispatch</span>
                 </li>
               </ul>
@@ -79,7 +79,7 @@ export default function HowToOrderPage() {
 
       {/* Structured Delivery & Fulfillment Information */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="bg-warmPorcelain-card rounded-3xl border border-ricePaper-dark/80 p-8 shadow-sm">
+        <div className="bg-warmPorcelain-card rounded-3xl border border-ricePaper-dark/80 p-6 sm:p-8 shadow-sm">
           <h2 className="font-serif text-2xl font-bold text-smokedSoy mb-6">
             Delivery &amp; Fulfillment Transparency
           </h2>
@@ -89,8 +89,8 @@ export default function HowToOrderPage() {
               <p className="text-mutedText">Rawalpindi and Islamabad across all major sectors and neighborhoods.</p>
             </div>
             <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
-              <span className="font-bold text-smokedSoy block mb-1 text-sm">Delivery Charges</span>
-              <p className="text-mutedText">Calculated based on actual distance and rider routing. Confirmed on WhatsApp with zero hidden fees.</p>
+              <span className="font-bold text-smokedSoy block mb-1 text-sm">Delivery via inDrive</span>
+              <p className="text-mutedText">Delivery fare is calculated per inDrive based on distance and routing. Confirmed on WhatsApp with zero markup.</p>
             </div>
             <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
               <span className="font-bold text-smokedSoy block mb-1 text-sm">Estimated Prep &amp; Delivery</span>
@@ -98,15 +98,15 @@ export default function HowToOrderPage() {
             </div>
             <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
               <span className="font-bold text-smokedSoy block mb-1 text-sm">Payment Methods</span>
-              <p className="text-mutedText">Cash on Delivery (COD) and Online Bank Transfer upon order dispatch.</p>
+              <p className="text-mutedText">Advance payment only via Bank Transfer or Easypaisa upon order confirmation.</p>
             </div>
             <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
               <span className="font-bold text-smokedSoy block mb-1 text-sm">Minimum Order</span>
-              <p className="text-mutedText">No fixed minimum order amount. We cater from individual boxes to family spreads.</p>
+              <p className="text-mutedText">No fixed minimum order amount. We cater from individual boxes to family feasts.</p>
             </div>
             <div className="p-4 rounded-2xl bg-warmPorcelain border border-ricePaper-dark/60">
               <span className="font-bold text-smokedSoy block mb-1 text-sm">Self-Pickup</span>
-              <p className="text-mutedText">Pickup coordination is available upon request when placing your order on WhatsApp.</p>
+              <p className="text-mutedText">Self-pickup coordination is available directly on WhatsApp (+92 319 1932923).</p>
             </div>
           </div>
         </div>

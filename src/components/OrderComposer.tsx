@@ -2,17 +2,18 @@
 
 import React, { useState, useMemo } from 'react';
 import { MENU_ITEMS, MenuItem, SpiceLevel } from '@/data/menu';
+import { useCart } from '@/context/CartContext';
 import { siteConfig } from '@/lib/config';
+import WhatsAppIcon from './WhatsAppIcon';
 import {
-  Send,
   Plus,
   Minus,
   MapPin,
   Users,
   Edit3,
   Flame,
-  AlertCircle,
   ShieldCheck,
+  ShoppingBag,
 } from 'lucide-react';
 
 interface OrderComposerProps {
@@ -28,6 +29,7 @@ export default function OrderComposer({
   headingText = 'Draft your WhatsApp order',
   subheadingText = 'Choose a dish, select your portion size, adjust heat, and preview your message before sending.',
 }: OrderComposerProps) {
+  const { addToCart } = useCart();
   const [selectedDishId, setSelectedDishId] = useState<string>(initialDishId);
   const [selectedSize, setSelectedSize] = useState<'Medium' | 'Large'>('Medium');
   const [quantity, setQuantity] = useState<number>(1);
@@ -86,6 +88,7 @@ export default function OrderComposer({
 - Preferred heat: ${selectedSpice}${priceStr}
 - Delivery area: ${areaStr}
 - Ordering for: ${peopleCount} ${peopleCount === 1 ? 'person' : 'people'}
+- Payment method: Advance Bank Transfer / Easypaisa
 
 Please confirm today's availability, delivery charges, and timing.`;
   }, [selectedDish, hasMultiSize, selectedSize, quantity, selectedSpice, totalPrice, deliveryArea, peopleCount]);
@@ -95,6 +98,17 @@ Please confirm today's availability, delivery charges, and timing.`;
       generatedMessage
     )}`;
   }, [generatedMessage]);
+
+  const handleAddComposerToTray = () => {
+    addToCart(
+      selectedDish,
+      hasMultiSize ? selectedSize : 'Standard',
+      selectedSpice,
+      selectedDish.spiceHeatValue || 3,
+      quantity,
+      deliveryArea ? `Delivery area: ${deliveryArea}` : ''
+    );
+  };
 
   const SPICE_OPTIONS: SpiceLevel[] = [
     'Not Spicy',
@@ -107,77 +121,58 @@ Please confirm today's availability, delivery charges, and timing.`;
 
   return (
     <div
-      className={`bg-smokedSoy text-ricePaper rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl border border-toastedSesame/30 ${className}`}
+      className={`bg-smokedSoy text-ricePaper p-6 sm:p-10 rounded-3xl border border-toastedSesame/30 shadow-2xl relative overflow-hidden ${className}`}
       id="order-composer"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <div className="max-w-3xl mb-8">
+        <span className="text-xs font-semibold text-toastedSesame block mb-1 uppercase tracking-wider">
+          Quick order composer
+        </span>
+        <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-warmPorcelain">
+          {headingText}
+        </h2>
+        <p className="mt-2 text-sm sm:text-base text-ricePaper/80 font-sans">
+          {subheadingText}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Form Controls */}
         <div className="lg:col-span-7 space-y-6">
-          <div>
-            <span className="text-xs text-toastedSesame font-medium tracking-wide block uppercase">
-              Interactive order composer
-            </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-warmPorcelain mt-1">
-              {headingText}
-            </h3>
-            <p className="mt-2 text-sm text-ricePaper/80 font-sans leading-relaxed">
-              {subheadingText}
-            </p>
-          </div>
-
           {/* 1. Dish Selector */}
           <div>
             <label
               htmlFor="composer-dish-select"
-              className="block text-xs font-semibold text-ricePaper mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-toastedSesame mb-2"
             >
               1. Select dish
             </label>
-            <div className="relative">
-              <select
-                id="composer-dish-select"
-                value={selectedDishId}
-                onChange={(e) => handleDishChange(e.target.value)}
-                className="w-full bg-smokedSoy-100 border border-toastedSesame/30 rounded-xl px-4 py-3 text-warmPorcelain text-sm focus:ring-2 focus:ring-wokCopper focus:border-wokCopper outline-none cursor-pointer"
-              >
-                {MENU_ITEMS.map((item) => (
-                  <option
-                    key={item.id}
-                    value={item.id}
-                    className="bg-smokedSoy text-warmPorcelain"
-                  >
-                    {item.name} —{' '}
-                    {item.customerPrice
-                      ? `Rs. ${item.customerPrice.toLocaleString()}`
-                      : 'Price on request'}{' '}
-                    ({item.spiceLevel})
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Dish allergen and unconfirmed price notice */}
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
-              {selectedDish.allergens && selectedDish.allergens.length > 0 && (
-                <span className="text-ricePaper/70 bg-smokedSoy-950/80 px-2.5 py-1 rounded-md border border-toastedSesame/20">
-                  <strong className="text-toastedSesame font-medium">Allergens:</strong>{' '}
-                  {selectedDish.allergens.join(', ')}
-                </span>
-              )}
-              {selectedDish.priceConfirmationStatus !== 'confirmed' && (
-                <span className="inline-flex items-center space-x-1 text-amber-300 bg-amber-950/50 px-2.5 py-1 rounded-md border border-amber-800/40">
-                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                  <span>Price confirmed upon inquiry</span>
-                </span>
-              )}
-            </div>
+            <select
+              id="composer-dish-select"
+              value={selectedDishId}
+              onChange={(e) => handleDishChange(e.target.value)}
+              className="w-full bg-smokedSoy-100 border border-toastedSesame/30 rounded-xl px-4 py-3 text-warmPorcelain text-sm focus:ring-2 focus:ring-wokCopper outline-none cursor-pointer"
+            >
+              {MENU_ITEMS.map((item) => (
+                <option
+                  key={item.id}
+                  value={item.id}
+                  className="bg-smokedSoy text-warmPorcelain"
+                >
+                  {item.name} {item.customerPrice ? `— Rs. ${item.customerPrice.toLocaleString()}` : '— (Price confirmed via WhatsApp)'}
+                </option>
+              ))}
+            </select>
+            <p className="mt-1.5 text-xs text-ricePaper/70 font-sans">
+              {selectedDish.description}
+            </p>
           </div>
 
-          {/* 2. Portion Size & Quantity Grid */}
+          {/* 2. Portion Size (if applicable) & Quantity */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Portion Size */}
             <div>
-              <label className="block text-xs font-semibold text-ricePaper mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-toastedSesame mb-2">
                 2. Portion size
               </label>
               {hasMultiSize ? (
@@ -185,60 +180,67 @@ Please confirm today's availability, delivery charges, and timing.`;
                   <button
                     type="button"
                     onClick={() => setSelectedSize('Medium')}
-                    className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-all border ${
+                    className={`py-2.5 px-3 rounded-xl text-xs font-semibold tracking-wide border transition-all ${
                       selectedSize === 'Medium'
                         ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
-                        : 'bg-smokedSoy-100 text-ricePaper/70 border-toastedSesame/20 hover:text-warmPorcelain'
+                        : 'bg-smokedSoy-100 text-ricePaper/80 border-toastedSesame/20 hover:text-warmPorcelain'
                     }`}
                   >
-                    Medium{' '}
-                    {selectedDish.customerPrice
-                      ? `(Rs. ${selectedDish.customerPrice.toLocaleString()})`
-                      : ''}
+                    Medium
+                    {selectedDish.customerPrice && (
+                      <span className="block text-[10px] opacity-80">
+                        Rs. {selectedDish.customerPrice.toLocaleString()}
+                      </span>
+                    )}
                   </button>
                   <button
                     type="button"
                     onClick={() => setSelectedSize('Large')}
-                    className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-all border ${
+                    className={`py-2.5 px-3 rounded-xl text-xs font-semibold tracking-wide border transition-all ${
                       selectedSize === 'Large'
                         ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
-                        : 'bg-smokedSoy-100 text-ricePaper/70 border-toastedSesame/20 hover:text-warmPorcelain'
+                        : 'bg-smokedSoy-100 text-ricePaper/80 border-toastedSesame/20 hover:text-warmPorcelain'
                     }`}
                   >
-                    Large{' '}
-                    {selectedDish.customerPriceLarge
-                      ? `(Rs. ${selectedDish.customerPriceLarge.toLocaleString()})`
-                      : ''}
+                    Large
+                    {selectedDish.customerPriceLarge && (
+                      <span className="block text-[10px] opacity-80">
+                        Rs. {selectedDish.customerPriceLarge.toLocaleString()}
+                      </span>
+                    )}
                   </button>
                 </div>
               ) : (
-                <div className="px-4 py-2.5 rounded-xl bg-smokedSoy-100 border border-toastedSesame/20 text-xs text-ricePaper/80">
-                  Standard: {selectedDish.portionSize || 'Full Platter / Gravy (Serves 2-3)'}
+                <div className="bg-smokedSoy-100/60 border border-toastedSesame/20 rounded-xl px-4 py-2.5 text-xs text-ricePaper/80">
+                  <span className="font-semibold text-warmPorcelain">Standard portion</span>
+                  <span className="block text-[11px] text-toastedSesame mt-0.5">
+                    {selectedDish.portionSize || 'Individual serving'}
+                  </span>
                 </div>
               )}
             </div>
 
-            {/* Quantity Controls */}
+            {/* Quantity */}
             <div>
-              <label className="block text-xs font-semibold text-ricePaper mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-toastedSesame mb-2">
                 3. Quantity
               </label>
-              <div className="flex items-center space-x-3 bg-smokedSoy-100 border border-toastedSesame/30 rounded-xl px-4 py-1.5">
+              <div className="flex items-center space-x-3 bg-smokedSoy-100 border border-toastedSesame/30 rounded-xl px-4 py-2">
                 <button
                   type="button"
-                  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-                  className="w-8 h-8 rounded-lg bg-smokedSoy-50 hover:bg-smokedSoy text-warmPorcelain flex items-center justify-center transition-colors"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="p-1 rounded text-ricePaper hover:text-warmPorcelain hover:bg-smokedSoy-50 transition-colors"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="flex-1 text-center font-bold text-warmPorcelain text-sm">
-                  {quantity} {quantity === 1 ? 'portion' : 'portions'}
+                <span className="flex-1 text-center font-serif text-base font-bold text-warmPorcelain">
+                  {quantity}
                 </span>
                 <button
                   type="button"
-                  onClick={() => setQuantity((prev) => prev + 1)}
-                  className="w-8 h-8 rounded-lg bg-smokedSoy-50 hover:bg-smokedSoy text-warmPorcelain flex items-center justify-center transition-colors"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="p-1 rounded text-ricePaper hover:text-warmPorcelain hover:bg-smokedSoy-50 transition-colors"
                   aria-label="Increase quantity"
                 >
                   <Plus className="w-4 h-4" />
@@ -247,46 +249,54 @@ Please confirm today's availability, delivery charges, and timing.`;
             </div>
           </div>
 
-          {/* 3. Heat Level Selection (Standardized 6 Tiers) */}
+          {/* 4. Heat Customization */}
           <div>
-            <label className="block text-xs font-semibold text-ricePaper mb-2 flex items-center space-x-1.5">
-              <Flame className="w-3.5 h-3.5 text-roastedChilli" />
-              <span>4. Preferred spice level (0–5 Heat Scale)</span>
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-              {SPICE_OPTIONS.map((lvl) => (
-                <button
-                  key={lvl}
-                  type="button"
-                  onClick={() => setSelectedSpice(lvl)}
-                  className={`px-2.5 py-2 rounded-xl text-xs font-semibold transition-all text-center border ${
-                    selectedSpice === lvl
-                      ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
-                      : 'bg-smokedSoy-100 text-ricePaper/70 border-toastedSesame/20 hover:text-warmPorcelain hover:bg-smokedSoy-50'
-                  }`}
-                >
-                  {lvl}
-                </button>
-              ))}
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-toastedSesame flex items-center space-x-1">
+                <Flame className="w-3.5 h-3.5 text-roastedChilli" />
+                <span>4. Heat customization</span>
+              </label>
+              <span className="text-xs text-ricePaper/60">
+                Default: {selectedDish.spiceLevel}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {SPICE_OPTIONS.map((spice) => {
+                const isSelected = selectedSpice === spice;
+                return (
+                  <button
+                    key={spice}
+                    type="button"
+                    onClick={() => setSelectedSpice(spice)}
+                    className={`py-2 px-2.5 rounded-xl text-xs font-medium border text-left transition-all ${
+                      isSelected
+                        ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md font-semibold'
+                        : 'bg-smokedSoy-100 text-ricePaper/80 border-toastedSesame/20 hover:text-warmPorcelain'
+                    }`}
+                  >
+                    {spice}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* 4. Delivery Area & Number of People */}
+          {/* 5. Delivery Neighborhood & 6. Party Size */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="composer-delivery-area"
-                className="block text-xs font-semibold text-ricePaper mb-2 flex items-center space-x-1"
+                className="block text-xs font-bold uppercase tracking-wider text-toastedSesame mb-2 flex items-center space-x-1"
               >
-                <MapPin className="w-3.5 h-3.5 text-toastedSesame" />
-                <span>5. Delivery area / sector</span>
+                <MapPin className="w-3.5 h-3.5 text-roastedChilli" />
+                <span>5. Delivery sector / area</span>
               </label>
               <input
                 id="composer-delivery-area"
                 type="text"
+                placeholder="e.g. F-7, Bahria Phase 4, Saddar..."
                 value={deliveryArea}
                 onChange={(e) => setDeliveryArea(e.target.value)}
-                placeholder="e.g. Bahria Phase 4, Saddar, F-7, DHA"
                 className="w-full bg-smokedSoy-100 border border-toastedSesame/30 rounded-xl px-4 py-3 text-warmPorcelain text-sm placeholder:text-ricePaper/40 focus:ring-2 focus:ring-wokCopper outline-none"
               />
             </div>
@@ -294,9 +304,9 @@ Please confirm today's availability, delivery charges, and timing.`;
             <div>
               <label
                 htmlFor="composer-people-count"
-                className="block text-xs font-semibold text-ricePaper mb-2 flex items-center space-x-1"
+                className="block text-xs font-bold uppercase tracking-wider text-toastedSesame mb-2 flex items-center space-x-1"
               >
-                <Users className="w-3.5 h-3.5 text-toastedSesame" />
+                <Users className="w-3.5 h-3.5 text-roastedChilli" />
                 <span>6. Ordering for</span>
               </label>
               <select
@@ -354,23 +364,32 @@ Please confirm today's availability, delivery charges, and timing.`;
             )}
 
             <div className="mt-2 text-[11px] text-ricePaper/60">
-              * Delivery charges vary by distance from dispatch point and are confirmed upfront on WhatsApp.
+              * Delivery charges via inDrive vary by distance and are confirmed upfront on WhatsApp. Advance payment via Bank Transfer or Easypaisa.
             </div>
           </div>
 
           <div className="space-y-3 pt-2">
+            <button
+              type="button"
+              onClick={handleAddComposerToTray}
+              className="w-full py-3 px-4 rounded-xl bg-smokedSoy-100 hover:bg-smokedSoy-50 text-warmPorcelain border border-toastedSesame/40 text-xs font-bold tracking-wide transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+            >
+              <ShoppingBag className="w-4 h-4 text-toastedSesame" />
+              <span>Add to Order Tray</span>
+            </button>
+
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 rounded-xl bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain font-bold tracking-wide shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 text-center"
+              className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold tracking-wide shadow-lg transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 text-center cursor-pointer"
             >
-              <Send className="w-4 h-4 text-warmPorcelain" />
+              <WhatsAppIcon className="w-4 h-4 text-white" />
               <span>Send order request via WhatsApp</span>
             </a>
 
             <div className="p-3 rounded-lg bg-smokedSoy-100/40 border border-toastedSesame/15 text-[11px] text-ricePaper/75 flex items-start space-x-2 leading-relaxed">
-              <ShieldCheck className="w-4 h-4 text-toastedSesame shrink-0 mt-0.5" />
+              <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
               <span>
                 <strong>Direct order confirmation:</strong> Sending this message opens official WhatsApp (+92 319 1932923) with your request. Our dispatch team will confirm dish availability, delivery fee, and time before preparation begins.
               </span>

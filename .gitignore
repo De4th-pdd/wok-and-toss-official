@@ -33,3 +33,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw media archives
+raw_assets/
+*.zip
+
+# scratch files
+scratch/

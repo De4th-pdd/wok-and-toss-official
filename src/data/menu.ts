@@ -76,7 +76,7 @@ export const CATEGORIES: CategoryMeta[] = [
   {
     id: 'soups',
     label: 'Simmered Broths & Soups',
-    tagline: 'Slow-simmered master broths crafted daily',
+    tagline: 'Comforting, flavorful Chinese soups crafted fresh',
     description: 'Comforting, restorative broths enriched with chicken essence, wood ear mushrooms, fresh egg silk, and cracked pepper.',
   },
   {
@@ -251,7 +251,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceConfirmationStatus: 'confirmed',
     availabilityStatus: 'available',
     allergens: ['Gluten/Wheat','Soy','Egg'],
-    tags: ['Crispy Texture', 'Heritage Recipe'],
+    tags: ['Crispy Texture', 'Classic Flavor'],
   },
 
   // -------------------------------------------------------------
@@ -261,7 +261,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'sweet-and-sassy-chicken',
     name: 'Sweet & Sassy Chicken',
     category: 'chicken-gravies',
-    description: 'Tender chicken medallions glazed in a vibrant pineapple-tomato reduction with crisp bell peppers and sweet onions.',
+    description: 'Tender chicken tossed in sweet and sour glaze with crisp bell peppers, pineapple chunks, and sweet onions.',
     image: null,
     spiceLevel: 'Not Spicy',
     spiceHeatValue: 0,
@@ -799,7 +799,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'house-special-soup',
     name: 'House Special Soup',
     category: 'soups',
-    description: 'Our most lavish master broth: loaded with chicken, prawns, black wood ear mushrooms, and crisp winter vegetables.',
+    description: 'Rich, comforting Chinese soup loaded with chicken shreds, prawns, wood ear mushrooms, and crisp vegetables.',
     image: null,
     spiceLevel: 'Mild',
     spiceHeatValue: 1,

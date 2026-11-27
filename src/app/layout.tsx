@@ -3,6 +3,11 @@ import { Newsreader, Manrope } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CartDrawer from '@/components/CartDrawer';
+import DishCustomizeModal from '@/components/DishCustomizeModal';
+import FloatingCartBar from '@/components/FloatingCartBar';
+import ScrollToTop from '@/components/ScrollToTop';
+import { CartProvider } from '@/context/CartContext';
 import { siteConfig } from '@/lib/config';
 
 const newsreader = Newsreader({
@@ -64,7 +69,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: 'Wok & Toss | Chinese Food in Rawalpindi & Islamabad',
     description:
-      'Hot, saucy, wok-tossed Chinese, made fresh for you. Browse authentic chowmein, gravies, fried rice and order on WhatsApp across Rawalpindi & Islamabad.',
+      'Freshly wok-tossed Chinese, delivered hot across Rawalpindi & Islamabad. Browse authentic chowmein, gravies, fried rice and order on WhatsApp.',
     images: [
       {
         url: siteConfig.ogImage,
@@ -111,7 +116,7 @@ export default function RootLayout({
     name: siteConfig.name,
     alternateName: siteConfig.shortName,
     description: siteConfig.description,
-    image: `${siteConfig.url}/assets/brand/logo.jpg`,
+    image: `${siteConfig.url}/assets/brand/logo.webp`,
     telephone: siteConfig.telephone,
     servesCuisine: siteConfig.cuisine,
     url: siteConfig.url,
@@ -145,6 +150,7 @@ export default function RootLayout({
     sameAs: [
       siteConfig.facebookUrl,
       siteConfig.whatsappUrl,
+      siteConfig.instagramUrl,
     ],
   };
 
@@ -157,9 +163,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-warmPorcelain text-smokedSoy selection:bg-roastedChilli selection:text-warmPorcelain">
-        <Header />
-        <main className="flex-1 pt-18">{children}</main>
-        <Footer />
+        <CartProvider>
+          <ScrollToTop />
+          <Header />
+          <main className="flex-1 pt-18">{children}</main>
+          <Footer />
+          <CartDrawer />
+          <DishCustomizeModal />
+          <FloatingCartBar />
+        </CartProvider>
       </body>
     </html>
   );

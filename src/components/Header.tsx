@@ -4,11 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/lib/config';
-import { MessageCircle, Menu, X, Flame } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import WhatsAppIcon from './WhatsAppIcon';
+import { Menu, X, ShoppingBag, Flame } from 'lucide-react';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { totalCount, subtotal, openCart } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,18 +78,43 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Action CTA & Mobile Trigger */}
-          <div className="flex items-center space-x-3">
+          {/* Action CTAs: Order Tray + WhatsApp + Mobile Menu */}
+          <div className="flex items-center space-x-2.5 sm:space-x-3">
+            {/* Cart / Order Tray Button */}
+            <button
+              type="button"
+              onClick={openCart}
+              className="relative inline-flex items-center space-x-2 px-3 sm:px-3.5 py-2 rounded-xl bg-smokedSoy-950/80 hover:bg-smokedSoy-950 text-warmPorcelain text-xs sm:text-sm font-semibold border border-toastedSesame/30 hover:border-toastedSesame/60 transition-all duration-200 shadow-sm"
+              aria-label={`View order tray with ${totalCount} items`}
+            >
+              <div className="relative">
+                <ShoppingBag className="w-4 h-4 text-toastedSesame" />
+                {totalCount > 0 && (
+                  <span className="absolute -top-2 -right-2.5 w-4 h-4 rounded-full bg-roastedChilli text-warmPorcelain text-[10px] font-bold flex items-center justify-center animate-pulse">
+                    {totalCount}
+                  </span>
+                )}
+              </div>
+              <span className="hidden sm:inline">Tray</span>
+              {totalCount > 0 && (
+                <span className="hidden md:inline font-serif text-xs font-bold text-toastedSesame border-l border-toastedSesame/30 pl-2">
+                  Rs. {subtotal.toLocaleString()}
+                </span>
+              )}
+            </button>
+
+            {/* Direct WhatsApp CTA */}
             <a
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus:ring-2 focus:ring-wokCopper"
+              className="inline-flex items-center space-x-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              <MessageCircle className="w-4 h-4 text-warmPorcelain" />
-              <span>Order on WhatsApp</span>
+              <WhatsAppIcon className="w-4 h-4 text-white" />
+              <span className="hidden sm:inline">WhatsApp</span>
             </a>
 
+            {/* Mobile Hamburger */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

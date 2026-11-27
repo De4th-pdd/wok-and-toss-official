@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Flame, MessageCircle, Info } from 'lucide-react';
+import { Flame, Info } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { siteConfig } from '@/lib/config';
 
 interface HeatTier {
@@ -40,7 +41,7 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-stone-200',
           dot: 'bg-stone-400',
         },
-        description: 'Velvety sweet-and-sour glaze over a crispy noodle nest, topped with a fried egg and tender chicken with zero chili burn.',
+        description: 'Velvety glaze over crispy or wok noodles with tender chicken and zero chili burn.',
         dishes: ['Crispy Chopsuey Stack'],
       },
       {
@@ -64,8 +65,20 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-orange-200',
           dot: 'bg-orange-500',
         },
-        description: 'A balanced, savory warmth with cracked black pepper and subtle chili aromatics that complement tender meats and button mushrooms.',
+        description: 'A balanced, savory warmth with cracked black pepper and subtle chili aromatics that complement tender meats.',
         dishes: ['House Special Chowmein', 'Classic Beef Chowmein', 'Classic Prawn Chowmein', 'Shroom Chowmein'],
+      },
+      {
+        levelName: 'Medium',
+        heatRank: 3,
+        colorTheme: {
+          bg: 'bg-orange-100',
+          text: 'text-orange-950',
+          border: 'border-orange-300',
+          dot: 'bg-orange-600',
+        },
+        description: 'Traditional wok noodles tossed with cracked red pepper, scallions, and light chili bean paste for a satisfying, authentic sting.',
+        dishes: ['Spicy Sichuan Chowmein', 'Wok Pepper Chowmein'],
       },
       {
         levelName: 'Spicy',
@@ -76,7 +89,7 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-red-300',
           dot: 'bg-red-600',
         },
-        description: 'High-heat wok noodles tossed with fresh bird’s eye green chilies, chili flakes, and fragrant Sichuan chili oil.',
+        description: 'High-heat wok noodles tossed with fresh bird’s eye green chilies, chili flakes, and fragrant chili oil.',
         dishes: ['Chilli Chicken Chowmein'],
       },
       {
@@ -88,7 +101,7 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-roastedChilli/40',
           dot: 'bg-roastedChilli',
         },
-        description: 'Intense high-heat noodles packed with blistered red chilies, crushed Sichuan peppercorns, and blackened chili flakes for extreme heat cravers.',
+        description: 'Intense high-heat noodles packed with blistered red chilies and blackened chili flakes for extreme heat cravers.',
         dishes: ['Firecracker Chicken Chowmein'],
       },
     ],
@@ -119,7 +132,7 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-amber-200',
           dot: 'bg-amber-500',
         },
-        description: 'Subtle sweet-tangy or gentle Sichuan aromatics with smooth warming undertones.',
+        description: 'Subtle sweet-tangy aromatics with smooth warming undertones.',
         dishes: ['Schezwan Heat Chicken', 'Shashlik Stir Chicken'],
       },
       {
@@ -167,7 +180,7 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
           border: 'border-roastedChilli/40',
           dot: 'bg-roastedChilli',
         },
-        description: 'Maximum wok blaze: blistering chili pastes and ghost pepper reduction crafted for extreme heat enthusiasts.',
+        description: 'Maximum wok blaze: blistering chili pastes crafted for extreme heat enthusiasts.',
         dishes: ['Firecracker Chicken Gravy'],
       },
     ],
@@ -229,39 +242,45 @@ const SPICE_GUIDES: SpiceCategoryData[] = [
   },
 ];
 
-export default function SpiceGuideSection() {
+interface SpiceGuideSectionProps {
+  hideHeader?: boolean;
+}
+
+export default function SpiceGuideSection({ hideHeader = false }: SpiceGuideSectionProps) {
   const [activeTab, setActiveTab] = useState('noodles');
   const activeGuide = SPICE_GUIDES.find((g) => g.id === activeTab) || SPICE_GUIDES[0];
 
   return (
-    <section className="py-20 bg-smokedSoy text-ricePaper relative overflow-hidden" id="spice-guide">
+    <section className="py-16 bg-smokedSoy text-ricePaper relative overflow-hidden" id="spice-guide">
       {/* Decorative ambient background */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-roastedChilli/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-toastedSesame/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="text-xs font-semibold text-toastedSesame block mb-2">
-            Tailored heat scale
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-warmPorcelain">
-            The Wok &amp; Toss Spice Guide
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-ricePaper/80 leading-relaxed font-sans">
-            Every dish at Wok &amp; Toss is prepared fresh to order. Rather than a generic heat scale, our spice levels are tailored specifically to each meat, seafood, and noodle dish.
-          </p>
-        </div>
+        {/* Section Header (hidden on dedicated spice guide page) */}
+        {!hideHeader && (
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="text-xs font-semibold text-toastedSesame block mb-2 uppercase tracking-wider">
+              Tailored heat scale
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-warmPorcelain">
+              The Wok &amp; Toss Spice Guide
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-ricePaper/80 leading-relaxed font-sans">
+              Every dish at Wok &amp; Toss is prepared fresh to order. Rather than a generic heat scale, our spice levels are tailored specifically to each meat, seafood, and noodle dish.
+            </p>
+          </div>
+        )}
 
         {/* Category Navigation Tabs */}
-        <div className="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3" role="tablist" aria-label="Spice categories">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3" role="tablist" aria-label="Spice categories">
           {SPICE_GUIDES.map((guide) => (
             <button
               key={guide.id}
               role="tab"
               aria-selected={activeTab === guide.id}
               onClick={() => setActiveTab(guide.id)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all duration-200 border ${
+              className={`px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all duration-200 border cursor-pointer ${
                 activeTab === guide.id
                   ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-lg'
                   : 'bg-smokedSoy-100 text-ricePaper/80 border-toastedSesame/20 hover:text-warmPorcelain hover:bg-smokedSoy-50'
@@ -273,7 +292,7 @@ export default function SpiceGuideSection() {
         </div>
 
         {/* Active Category Display */}
-        <div className="mt-12 bg-smokedSoy-950/85 rounded-3xl border border-toastedSesame/20 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+        <div className="mt-10 bg-smokedSoy-950/85 rounded-3xl border border-toastedSesame/20 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 border-b border-toastedSesame/15 gap-4">
             <div>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-warmPorcelain">
@@ -290,7 +309,7 @@ export default function SpiceGuideSection() {
           </div>
 
           {/* Vertical Heat Scale List */}
-          <div className="mt-8 space-y-6">
+          <div className="mt-8 space-y-4">
             {activeGuide.levels.map((lvl) => (
               <div
                 key={lvl.levelName}
@@ -361,7 +380,7 @@ export default function SpiceGuideSection() {
             ))}
           </div>
 
-          {/* Spice Customization Box */}
+          {/* Unified Spice Customization CTA Box */}
           <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-roastedChilli/20 via-toastedSesame/10 to-transparent border border-roastedChilli/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start space-x-3">
               <Flame className="w-5 h-5 text-roastedChilli shrink-0 mt-0.5" />
@@ -370,7 +389,7 @@ export default function SpiceGuideSection() {
                   Need your spice level adjusted?
                 </h4>
                 <p className="text-xs sm:text-sm text-ricePaper/80 font-sans mt-0.5">
-                  Spice levels can be fine-tuned by contacting us on WhatsApp. Whether you prefer extra mild seasoning for children or high-heat bird’s eye chili, the spice blend is tailored to your craving.
+                  Every order is seasoned fresh. Whether you need gentle mild seasoning for family or intense bird’s eye chili, let us know on WhatsApp.
                 </p>
               </div>
             </div>
@@ -378,16 +397,16 @@ export default function SpiceGuideSection() {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain text-xs font-semibold tracking-wide shrink-0 transition-all shadow-md"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold tracking-wide shrink-0 transition-all shadow-md"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4 text-white" />
               <span>Ask for custom spice</span>
             </a>
           </div>
         </div>
 
         {/* Link to full menu */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/menu"
             className="inline-flex items-center space-x-2 px-6 py-3 rounded-full border border-toastedSesame/40 text-ricePaper hover:text-warmPorcelain hover:bg-smokedSoy-100 transition-colors text-sm font-semibold"

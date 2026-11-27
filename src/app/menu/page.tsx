@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { MENU_ITEMS, CATEGORIES } from '@/data/menu';
 import DishCard from '@/components/DishCard';
-import { Search, MessageCircle, Filter, ArrowLeft, Info, Flame, X } from 'lucide-react';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { Search, Filter, ArrowLeft, Info, Flame, X } from 'lucide-react';
 import { siteConfig } from '@/lib/config';
 
 function MenuContent() {
@@ -64,8 +65,8 @@ function MenuContent() {
 
   return (
     <div className="bg-warmPorcelain min-h-screen text-smokedSoy pb-24">
-      {/* Editorial Header Banner */}
-      <section className="bg-smokedSoy text-ricePaper pt-16 pb-16 border-b border-toastedSesame/20 relative overflow-hidden">
+      {/* Editorial Header Banner with safe navbar padding */}
+      <section className="bg-smokedSoy text-ricePaper pt-24 sm:pt-28 pb-14 border-b border-toastedSesame/20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-roastedChilli/10 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
@@ -77,14 +78,14 @@ function MenuContent() {
               <span>Back to home</span>
             </Link>
             
-            <span className="text-xs font-semibold text-toastedSesame block mb-1">
+            <span className="text-xs font-semibold text-toastedSesame block mb-1 uppercase tracking-wider">
               Kitchen catalog
             </span>
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-warmPorcelain">
               The Wok &amp; Toss Menu
             </h1>
             <p className="mt-4 text-base sm:text-lg text-ricePaper/80 leading-relaxed font-sans font-light">
-              Explore authentic Chinese chowmein, sizzling chicken and beef gravies, wok fried rice, and slow-simmered broths. Prepared fresh to order in Rawalpindi and Islamabad.
+              Explore authentic Chinese chowmein, sizzling chicken and beef gravies, wok fried rice, and simmered broths. Prepared fresh to order in Rawalpindi and Islamabad.
             </p>
           </div>
         </div>
@@ -96,22 +97,22 @@ function MenuContent() {
           <div className="flex items-start space-x-3">
             <Info className="w-5 h-5 text-roastedChilli shrink-0 mt-0.5" />
             <p className="text-xs sm:text-sm text-mutedText leading-relaxed">
-              <span className="font-bold text-smokedSoy">Price confirmation:</span> All listed prices reflect verified Wok &amp; Toss retail rates. For unconfirmed items or daily specials, click &quot;Order&quot; or message &quot;MENU&quot; on WhatsApp to receive current rates and availability for your area.
+              <span className="font-bold text-smokedSoy">Price confirmation:</span> All listed prices reflect verified Wok &amp; Toss retail rates. Click any dish to customize spice, portion size, and add directly to your order tray.
             </p>
           </div>
           <a
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain text-xs font-bold shrink-0 shadow transition-all"
+            className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold shrink-0 shadow transition-all"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
+            <WhatsAppIcon className="w-4 h-4 text-white" />
             <span>Request today&apos;s menu</span>
           </a>
         </div>
       </div>
 
-      {/* Filter & Search Bar */}
+      {/* Filter & Search Controls */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between pb-6 border-b border-ricePaper-dark">
           {/* Search Input */}
@@ -136,26 +137,26 @@ function MenuContent() {
             )}
           </div>
 
-          {/* Spice Filter Buttons */}
-          <div className="flex items-center space-x-2 overflow-x-auto pb-2 lg:pb-0">
+          {/* Spice Filter Buttons (Wrapping cleanly) */}
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <span className="text-xs font-medium text-mutedText shrink-0 flex items-center mr-1">
               <Filter className="w-3 h-3 mr-1 text-toastedSesame" />
               <span>Spice:</span>
             </span>
             {[
               { id: 'all', label: 'All heat' },
-              { id: '0', label: 'Not Spicy' },
-              { id: '1', label: 'Mild' },
-              { id: '2', label: 'Low to Medium' },
-              { id: '3', label: 'Medium' },
-              { id: '4', label: 'Spicy' },
-              { id: '5', label: 'Extra Spicy' },
+              { id: '0', label: '0 Not Spicy' },
+              { id: '1', label: '1 Mild' },
+              { id: '2', label: '2 Low to Med' },
+              { id: '3', label: '3 Medium' },
+              { id: '4', label: '4 Spicy' },
+              { id: '5', label: '5 Extra Spicy' },
             ].map((sp) => (
               <button
                 key={sp.id}
                 type="button"
                 onClick={() => setSelectedSpiceFilter(sp.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all shrink-0 border ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all shrink-0 border cursor-pointer ${
                   selectedSpiceFilter === sp.id
                     ? 'bg-smokedSoy text-warmPorcelain border-smokedSoy shadow-sm'
                     : 'bg-warmPorcelain-card text-mutedText border-ricePaper-dark hover:text-smokedSoy'
@@ -167,12 +168,12 @@ function MenuContent() {
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="mt-6 flex items-center space-x-2 overflow-x-auto pb-3">
+        {/* Category Filter Pills (Wrapping cleanly without horizontal scrollbar or truncation) */}
+        <div className="mt-6 flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => handleCategorySelect('all')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shrink-0 border ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all border cursor-pointer ${
               selectedCategory === 'all'
                 ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
                 : 'bg-warmPorcelain-card text-mutedText border-ricePaper-dark hover:text-smokedSoy hover:bg-ricePaper/50'
@@ -187,7 +188,7 @@ function MenuContent() {
                 key={cat.id}
                 type="button"
                 onClick={() => handleCategorySelect(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shrink-0 border ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all border cursor-pointer ${
                   selectedCategory === cat.id
                     ? 'bg-roastedChilli text-warmPorcelain border-roastedChilli shadow-md'
                     : 'bg-warmPorcelain-card text-mutedText border-ricePaper-dark hover:text-smokedSoy hover:bg-ricePaper/50'
@@ -200,10 +201,10 @@ function MenuContent() {
         </div>
       </div>
 
-      {/* Menu Dish Cards Grid */}
+      {/* Menu Dish Cards Grid with equal heights */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {filteredItems.map((item) => (
               <DishCard key={item.id} item={item} />
             ))}

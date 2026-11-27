@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/lib/config';
-import { MessageCircle, Clock, MapPin, Phone } from 'lucide-react';
-import { FacebookIcon } from '@/components/Icons';
+import { Clock, MapPin, Phone } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '@/components/Icons';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,12 +29,30 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-ricePaper/80 leading-relaxed font-sans">
-              Hot, saucy, wok-tossed Chinese, made fresh for you. Freshly prepared to order across Rawalpindi and Islamabad.
+              Hot, saucy, wok-tossed Chinese, made fresh for you. Delivered hot across Rawalpindi &amp; Islamabad.
             </p>
             <div className="text-xs text-toastedSesame font-medium tracking-wide">
-              &quot;Wok says toss.&quot;
+              &quot;Freshly wok-tossed Chinese, delivered hot across Rawalpindi &amp; Islamabad.&quot;
             </div>
-            <div className="pt-2 flex items-center space-x-4">
+            <div className="pt-2 flex items-center space-x-3">
+              <a
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-smokedSoy-100 border border-toastedSesame/30 flex items-center justify-center text-ricePaper hover:text-[#25D366] hover:border-[#25D366] transition-colors"
+                aria-label="Wok & Toss on WhatsApp"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-smokedSoy-100 border border-toastedSesame/30 flex items-center justify-center text-ricePaper hover:text-toastedSesame hover:border-toastedSesame transition-colors"
+                aria-label="Wok & Toss on Instagram"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
               <a
                 href={siteConfig.facebookUrl}
                 target="_blank"
@@ -43,15 +61,6 @@ export default function Footer() {
                 aria-label="Wok & Toss on Facebook"
               >
                 <FacebookIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-smokedSoy-100 border border-toastedSesame/30 flex items-center justify-center text-ricePaper hover:text-roastedChilli hover:border-roastedChilli transition-colors"
-                aria-label="Wok & Toss on WhatsApp"
-              >
-                <MessageCircle className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -138,11 +147,11 @@ export default function Footer() {
               Twin Cities delivery
             </h3>
             <p className="text-xs text-ricePaper/75 leading-relaxed font-sans">
-              Craving fresh Chinese food in Islamabad or Rawalpindi? Send &quot;MENU&quot; on WhatsApp, specify your area and party size, and our team will share the latest availability and delivery arrangements.
+              Craving fresh Chinese food in Islamabad or Rawalpindi? Build your order tray or message on WhatsApp, specify your area, and our dispatch team will confirm live availability and inDrive fare.
             </p>
-            <div className="p-3 bg-smokedSoy-950/70 rounded-lg border border-toastedSesame/20 text-xs text-toastedSesame/90">
+            <div className="p-3 bg-smokedSoy-950/70 rounded-xl border border-toastedSesame/20 text-xs text-toastedSesame/90">
               <span className="font-semibold block text-warmPorcelain">Direct WhatsApp ordering:</span>
-              High-heat wok cooking prepared fresh to order and coordinated directly via WhatsApp.
+              High-heat wok cooking prepared fresh to order. Advance payment via Bank Transfer or Easypaisa.
             </div>
           </div>
         </div>

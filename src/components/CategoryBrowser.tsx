@@ -1,7 +1,40 @@
 import React from 'react';
 import Link from 'next/link';
-import { CATEGORIES, MENU_ITEMS } from '@/data/menu';
-import { ArrowRight, Flame } from 'lucide-react';
+import { CATEGORIES, MENU_ITEMS, MenuCategory } from '@/data/menu';
+import {
+  ArrowRight,
+  UtensilsCrossed,
+  Drumstick,
+  Beef,
+  Fish,
+  CookingPot,
+  Soup,
+  Sparkles,
+  Box,
+} from 'lucide-react';
+
+function getCategoryIcon(catId: MenuCategory) {
+  switch (catId) {
+    case 'noodles':
+      return <UtensilsCrossed className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'chicken-gravies':
+      return <Drumstick className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'beef-gravies':
+      return <Beef className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'prawn-gravies':
+      return <Fish className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'rice':
+      return <CookingPot className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'soups':
+      return <Soup className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'starters':
+      return <Sparkles className="w-3.5 h-3.5 text-roastedChilli" />;
+    case 'chips':
+      return <Box className="w-3.5 h-3.5 text-roastedChilli" />;
+    default:
+      return <UtensilsCrossed className="w-3.5 h-3.5 text-roastedChilli" />;
+  }
+}
 
 export default function CategoryBrowser() {
   return (
@@ -9,14 +42,14 @@ export default function CategoryBrowser() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <span className="text-xs font-semibold text-mutedText block mb-1">
+            <span className="text-xs font-semibold text-mutedText block mb-1 uppercase tracking-wider">
               Explore our menu categories
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy">
               Popular menu categories
             </h2>
             <p className="mt-2 text-base text-mutedText max-w-xl font-sans">
-              From high-flame wok chowmein to slow-simmered master broths and sizzling gravies, explore our verified Chinese selections.
+              From high-flame wok chowmein and fried rice to sizzling chicken, beef gravies, and comforting broths.
             </p>
           </div>
           <Link
@@ -41,9 +74,9 @@ export default function CategoryBrowser() {
               >
                 <div>
                   <div className="flex items-center justify-between text-xs text-toastedSesame font-medium mb-3">
-                    <span className="inline-flex items-center space-x-1">
-                      <Flame className="w-3.5 h-3.5 text-roastedChilli" />
-                      <span>{count} dishes</span>
+                    <span className="inline-flex items-center space-x-1.5 bg-ricePaper/60 px-2.5 py-1 rounded-full border border-ricePaper-dark/60">
+                      {getCategoryIcon(cat.id)}
+                      <span className="text-smokedSoy-900 font-semibold">{count} dishes</span>
                     </span>
                     <span className="text-mutedText group-hover:text-roastedChilli group-hover:translate-x-1 transition-all">
                       &rarr;

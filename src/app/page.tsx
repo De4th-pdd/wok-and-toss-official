@@ -10,8 +10,8 @@ import CustomerSpotlight from '@/components/CustomerSpotlight';
 import SpiceGuideSection from '@/components/SpiceGuideSection';
 import OrderStepSection from '@/components/OrderStepSection';
 import LocalSeoFaq from '@/components/LocalSeoFaq';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 import {
-  MessageCircle,
   Clock,
   MapPin,
   ArrowRight,
@@ -45,7 +45,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Column: Headlines & Direct Actions */}
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-semibold text-toastedSesame block">
+              <span className="text-xs font-semibold text-toastedSesame block uppercase tracking-wider">
                 Rawalpindi &amp; Islamabad • High-heat wok cooking
               </span>
 
@@ -54,7 +54,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-lg sm:text-xl text-ricePaper/85 leading-relaxed font-sans max-w-2xl font-light">
-                Chinese food for your cravings in Rawalpindi &amp; Islamabad. Freshly charred chowmein, rich simmering gravies, and customizable spice levels prepared fresh to order.
+                Freshly wok-tossed Chinese food delivered hot across Rawalpindi &amp; Islamabad. Authentic chowmein, sizzling chicken and beef gravies, and customizable spice levels prepared fresh to order.
               </p>
 
               {/* Operating Facts */}
@@ -65,7 +65,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center space-x-2 bg-smokedSoy-100/60 px-3.5 py-2 rounded-xl border border-toastedSesame/20">
                   <MapPin className="w-4 h-4 text-toastedSesame shrink-0" />
-                  <span>Twin Cities delivery coverage</span>
+                  <span>Twin Cities delivery via inDrive</span>
                 </div>
               </div>
 
@@ -83,15 +83,15 @@ export default function HomePage() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center space-x-2.5 px-7 py-4 rounded-full bg-smokedSoy-100 hover:bg-smokedSoy-50 text-warmPorcelain border border-toastedSesame/40 font-semibold text-base tracking-wide shadow-md hover:shadow-lg transition-all duration-200"
+                  className="inline-flex items-center justify-center space-x-2.5 px-7 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-base tracking-wide shadow-md hover:shadow-lg transition-all duration-200"
                 >
-                  <MessageCircle className="w-5 h-5 text-roastedChilli" />
+                  <WhatsAppIcon className="w-5 h-5 text-white" />
                   <span>Order on WhatsApp</span>
                 </a>
               </div>
 
               <div className="pt-2 text-xs font-sans text-ricePaper/60">
-                &quot;Wok says toss.&quot; • WhatsApp: {siteConfig.phoneDisplay}
+                Freshly wok-tossed Chinese, delivered hot across Rawalpindi &amp; Islamabad • WhatsApp: {siteConfig.phoneDisplay}
               </div>
             </div>
 
@@ -126,7 +126,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-xs font-semibold text-mutedText block mb-1">
+              <span className="text-xs font-semibold text-mutedText block mb-1 uppercase tracking-wider">
                 Customer favorites
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy">
@@ -146,7 +146,7 @@ export default function HomePage() {
           </div>
 
           {/* 6-Dish Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {featuredDishes.map((item) => (
               <DishCard key={item.id} item={item} />
             ))}
@@ -221,7 +221,7 @@ export default function HomePage() {
 
             {/* Narrative Column */}
             <div className="lg:col-span-6 space-y-6 lg:pl-6">
-              <span className="text-xs font-semibold text-mutedText block">
+              <span className="text-xs font-semibold text-mutedText block uppercase tracking-wider">
                 Fresh wok preparation
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-smokedSoy leading-tight">
@@ -283,7 +283,7 @@ export default function HomePage() {
           <div className="bg-warmPorcelain rounded-3xl p-8 sm:p-12 border border-ricePaper-dark/80 shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <span className="text-xs font-semibold text-mutedText block">
+                <span className="text-xs font-semibold text-mutedText block uppercase tracking-wider">
                   Twin Cities delivery
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-smokedSoy">
@@ -298,7 +298,7 @@ export default function HomePage() {
                     <span className="text-mutedText block mt-1">Every day, 12:30 PM – 11:00 PM</span>
                   </div>
                   <div className="p-4 rounded-xl bg-warmPorcelain-card border border-ricePaper-dark/60">
-                    <span className="block font-serif font-bold text-smokedSoy text-base">WhatsApp hotline</span>
+                    <span className="block font-serif font-bold text-smokedSoy text-base">WhatsApp ordering</span>
                     <span className="text-mutedText block mt-1">+92 319 1932923</span>
                   </div>
                 </div>
@@ -324,9 +324,9 @@ export default function HomePage() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 w-full inline-flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain text-xs font-semibold tracking-wide transition-all shadow-md"
+                  className="mt-6 w-full inline-flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold tracking-wide transition-all shadow-md cursor-pointer"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 text-white" />
                   <span>Send WhatsApp message</span>
                 </a>
               </div>
@@ -341,7 +341,7 @@ export default function HomePage() {
       {/* 11. FINAL WHATSAPP CALL TO ACTION */}
       <section className="py-20 bg-smokedSoy text-ricePaper relative overflow-hidden border-t border-toastedSesame/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <span className="text-xs font-semibold text-toastedSesame block">
+          <span className="text-xs font-semibold text-toastedSesame block uppercase tracking-wider">
             Ready for your craving?
           </span>
           <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-warmPorcelain tracking-tight leading-tight">
@@ -356,9 +356,9 @@ export default function HomePage() {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-roastedChilli hover:bg-roastedChilli-hover text-warmPorcelain font-bold text-base tracking-wide shadow-2xl transition-all duration-200 hover:-translate-y-0.5"
+              className="inline-flex items-center space-x-3 px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-base tracking-wide shadow-2xl transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
             >
-              <MessageCircle className="w-5 h-5 text-warmPorcelain" />
+              <WhatsAppIcon className="w-5 h-5 text-white" />
               <span>Message &quot;MENU&quot; on WhatsApp</span>
             </a>
             <Link
